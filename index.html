@@ -84,32 +84,26 @@
     .typewriter {
       display: inline-block;
       overflow: hidden;
-      border-right: 2px solid rgb(79, 121, 66); /* Cursor */
       white-space: nowrap;
-      animation: typing 3s steps(20, end), blink 0.75s step-end infinite;
       font-size: 3.5rem;
       font-weight: 500;
+      animation: typing 3s steps(17, end) forwards;
     }
 
     @keyframes typing {
       from { width: 0 }
-      to { width: 15ch }
-    }
-
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: rgb(79, 121, 66); }
+      to { width: 17ch } /* Includes period */
     }
 
     .subheading {
       font-size: 1.25rem;
-      margin-top: 1.5rem; /* Increased vertical spacing */
+      margin-top: 1.5rem;
     }
 
     @media (max-width: 600px) {
       .typewriter {
         font-size: 2.5rem;
-        animation: typing 2.5s steps(15, end), blink 0.75s step-end infinite;
+        animation: typing 2.5s steps(17, end) forwards;
       }
 
       .subheading {
@@ -133,7 +127,7 @@
   </div>
 
   <div class="content">
-    <div class="typewriter">Shaneil Narsey</div>
+    <div class="typewriter">Shaneil Narsey.</div>
     <div class="subheading">Architect, New Zealand</div>
   </div>
 </body>
