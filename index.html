@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaneil Narsey</title>
+
+  <!-- Google Font: Playfair Display -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,8 +17,9 @@
 
     html, body {
       height: 100%;
-      font-family: Garamond, "Georgia", serif;
+      font-family: 'Playfair Display', serif;
       color: rgb(79, 121, 66);
+      overflow: hidden;
     }
 
     body {
@@ -25,46 +30,100 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
+      position: relative;
+      animation: fadeInBody 1.5s ease forwards;
     }
 
-    .content h1,
-    .content p a {
-      transition: opacity 0.3s ease;
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    .content h1:hover,
-    .content p a:hover {
-      opacity: 0.6;
+    /* Green overlay that fades out */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(79, 121, 66, 0.4);
+      z-index: 0;
+      animation: fadeOutOverlay 2s ease forwards;
     }
 
-    h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+    @keyframes fadeOutOverlay {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
+    .top-right {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1rem;
+      z-index: 1;
     }
 
-    a {
+    .top-right a {
       color: rgb(79, 121, 66);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
       border-bottom: 2px solid transparent;
       transition: border-bottom 0.3s ease, opacity 0.3s ease;
     }
 
-    a:hover {
+    .top-right a:hover {
+      opacity: 0.6;
       border-bottom: 2px solid rgb(79, 121, 66);
+    }
+
+    .content {
+      z-index: 1;
+    }
+
+    .content h1 {
+      font-size: 3.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .content h1:hover {
+      opacity: 0.6;
+    }
+
+    .subheading {
+      font-size: 1.25rem;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .content h1 {
+        font-size: 2.5rem;
+      }
+
+      .subheading {
+        font-size: 1rem;
+      }
+
+      .top-right {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="overlay"></div>
+
+  <div class="top-right">
+    <a href="https://instagram.com/shaneiln" target="_blank">hello</a>
+  </div>
+
   <div class="content">
     <h1>Shaneil Narsey</h1>
-    <p><a href="https://instagram.com/shaneiln" target="_blank">@shaneiln</a></p>
+    <div class="subheading">Architect, New Zealand</div>
   </div>
 </body>
 </html>
