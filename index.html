@@ -28,6 +28,8 @@ html, body {
   overflow: hidden;
 }
 
+a { color: inherit; text-decoration: none; }
+
 /* ── NAV ── */
 nav {
   position: fixed;
@@ -39,7 +41,6 @@ nav {
   padding: 30px 44px;
   pointer-events: none;
 }
-
 .nav-logo {
   font-size: 12px;
   font-weight: 400;
@@ -50,7 +51,6 @@ nav {
   transition: opacity 0.2s;
 }
 .nav-logo:hover { opacity: 0.4; }
-
 .nav-links {
   display: flex;
   gap: 28px;
@@ -95,14 +95,13 @@ nav {
   align-items: center;
 }
 
-/* ── HERO SLIDE ── */
+/* ── HERO ── */
 .slide-hero {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0 44px 48px;
 }
-
 .hero-label {
   font-size: clamp(28px, 4.5vw, 52px);
   font-weight: 300;
@@ -112,7 +111,6 @@ nav {
   transform: translateY(16px);
   animation: up 0.85s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
 .hero-sub {
   margin-top: 12px;
   font-size: 11px;
@@ -122,7 +120,6 @@ nav {
   opacity: 0;
   animation: up 0.85s 0.28s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
 .scroll-nudge {
   position: absolute;
   bottom: 48px;
@@ -147,30 +144,19 @@ nav {
   background: var(--mid);
   animation: pulse-line 2s 1.5s ease-in-out infinite;
 }
-
 @keyframes pulse-line {
-  0%,100% { opacity: 0.35; transform: scaleY(1); }
-  50%      { opacity: 0.8;  transform: scaleY(1.15); }
+  0%,100% { opacity: 0.35; }
+  50%      { opacity: 0.8; }
 }
 @keyframes up     { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadein { to { opacity: 1; } }
 
-/* ── PHOTO SLIDE LAYOUTS ── */
-
-/*
-  Each photo slide has:
-  - .slide-photo   — the image container (positioned, sized)
-  - .slide-caption — title + sub (positioned relative to slide)
-
-  Layouts alternate: left-heavy, right-heavy, centred-tall, etc.
-*/
-
+/* ── PHOTO ── */
 .slide-photo {
   position: absolute;
   overflow: hidden;
   background: #e0ddd8;
 }
-
 .slide-photo img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -178,19 +164,15 @@ nav {
   transform: scale(1.05);
   transition: transform 1s cubic-bezier(0.16,1,0.3,1);
 }
+.slide.in-view .slide-photo img { transform: scale(1.0); }
 
-.slide.in-view .slide-photo img {
-  transform: scale(1.0);
-}
-
-/* Placeholder */
 .slide-photo-placeholder {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
 }
 .slide-photo-placeholder svg { opacity: 0.18; }
 
-/* Caption */
+/* ── CAPTION ── */
 .slide-caption {
   position: absolute;
   z-index: 10;
@@ -198,11 +180,7 @@ nav {
   transform: translateY(12px);
   transition: opacity 0.65s 0.3s ease, transform 0.65s 0.3s cubic-bezier(0.16,1,0.3,1);
 }
-.slide.in-view .slide-caption {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 .caption-title {
   font-size: clamp(14px, 1.8vw, 20px);
   font-weight: 400;
@@ -217,182 +195,55 @@ nav {
   color: var(--mid);
 }
 
-/* ──────────────────────────────────────────────────────
-   LAYOUT VARIANTS
-   Each .slide gets a layout class that positions
-   .slide-photo and .slide-caption differently.
-   Mix these in your HTML for visual rhythm.
-────────────────────────────────────────────────────── */
+/* ── LAYOUT VARIANTS ── */
+.layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
+.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* LEFT — tall portrait, right negative space */
-.layout-left .slide-photo {
-  left: 10vw;
-  top: 12vh;
-  width: 38vw;
-  height: 76vh;
-}
-.layout-left .slide-caption {
-  right: 8vw;
-  bottom: 18vh;
-  text-align: right;
-}
+.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
+.layout-right .slide-caption { left: 8vw; bottom: 16vh; }
 
-/* RIGHT — landscape, left negative space */
-.layout-right .slide-photo {
-  right: 8vw;
-  top: 16vh;
-  width: 54vw;
-  height: 68vh;
-}
-.layout-right .slide-caption {
-  left: 8vw;
-  bottom: 16vh;
-}
+.layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
+.layout-centre-tall .slide-caption { left: 50%; transform: translateX(-50%); bottom: 5.5vh; text-align: center; white-space: nowrap; }
+.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* CENTRE-TALL — narrow portrait centred, lots of breathing room */
-.layout-centre-tall .slide-photo {
-  left: 50%;
-  transform: translateX(-50%);
-  top: 10vh;
-  width: 32vw;
-  height: 78vh;
-}
-.layout-centre-tall .slide-caption {
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 5.5vh;
-  text-align: center;
-  white-space: nowrap;
-}
+.layout-wide .slide-photo   { left: 8vw; right: 8vw; top: 14vh; width: 84vw; height: 64vh; }
+.layout-wide .slide-caption { left: 8vw; bottom: 7vh; }
 
-/* WIDE — full-width-ish landscape, minimal margins top/bottom */
-.layout-wide .slide-photo {
-  left: 8vw;
-  right: 8vw;
-  top: 14vh;
-  width: 84vw;
-  height: 64vh;
-}
-.layout-wide .slide-caption {
-  left: 8vw;
-  bottom: 7vh;
-}
+.layout-small-left .slide-photo   { left: 14vw; top: 20vh; width: 28vw; height: 60vh; }
+.layout-small-left .slide-caption { right: 10vw; top: 50%; transform: translateY(-50%); }
+.layout-small-left.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
 
-/* SMALL-LEFT — smaller portrait offset left, asymmetric */
-.layout-small-left .slide-photo {
-  left: 14vw;
-  top: 20vh;
-  width: 28vw;
-  height: 60vh;
-}
-.layout-small-left .slide-caption {
-  right: 10vw;
-  top: 50%;
-  transform: translateY(-50%);
-}
+.layout-small-right .slide-photo   { right: 12vw; top: 22vh; width: 46vw; height: 55vh; }
+.layout-small-right .slide-caption { left: 8vw; top: 50%; transform: translateY(-50%); }
+.layout-small-right.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
 
-/* SMALL-RIGHT — smaller landscape offset right */
-.layout-small-right .slide-photo {
-  right: 12vw;
-  top: 22vh;
-  width: 46vw;
-  height: 55vh;
-}
-.layout-small-right .slide-caption {
-  left: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Fix: in-view overrides transform on centre-tall caption */
-.layout-centre-tall.slide.in-view .slide-caption {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-/* Same for small-left/right captions with translateY */
-.layout-small-left.slide.in-view .slide-caption,
-.layout-small-right.slide.in-view .slide-caption {
-  opacity: 1;
-  transform: translateY(-50%);
-}
-
-/* ── ABOUT PAGE ── */
+/* ── ABOUT ── */
 #about { overflow-y: auto; padding: 110px 44px 80px; }
-
 .about-wrap {
-  max-width: 860px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  max-width: 860px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
 }
-
-.about-label {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 24px;
-}
-
-.about-heading {
-  font-size: clamp(30px, 3.8vw, 46px);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  margin-bottom: 32px;
-}
-
-.about-body {
-  font-size: 15px;
-  line-height: 1.95;
-  color: var(--mid);
-  font-weight: 300;
-}
+.about-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
+.about-heading { font-size: clamp(30px, 3.8vw, 46px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 32px; }
+.about-body { font-size: 15px; line-height: 1.95; color: var(--mid); font-weight: 300; }
 .about-body p + p { margin-top: 16px; }
-
 .about-right { padding-top: 56px; }
-
 .about-portrait {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: #e0ddd8;
-  overflow: hidden;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%; aspect-ratio: 3/4; background: #e0ddd8;
+  overflow: hidden; margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: center;
 }
 .about-portrait img { width:100%; height:100%; object-fit:cover; display:block; }
-
 .about-rule { height:1px; background:rgba(52,52,52,0.12); margin-bottom:24px; }
-
-.about-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.detail-label {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 3px;
-}
+.about-details { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.detail-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 3px; }
 .detail-value { font-size: 14px; font-weight: 400; }
-
 .ig-link {
-  display: inline-block;
-  margin-top: 32px;
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-  text-decoration: none;
-  color: var(--ink);
-  transition: opacity 0.2s;
+  display: inline-block; margin-top: 32px;
+  font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+  color: var(--ink); transition: opacity 0.2s;
 }
 .ig-link:hover { opacity: 0.4; }
 
@@ -427,28 +278,7 @@ nav {
   </ul>
 </nav>
 
-<!-- ═══ PHOTOGRAPHY / SELECTED WORKS ═══ -->
-<!--
-  HOW TO ADD YOUR PHOTOS
-  ──────────────────────
-  1. Create a /photos/ folder in your GitHub repo and upload your images there.
-
-  2. For each .slide, replace the <div class="slide-photo-placeholder"> block with:
-       <img src="photos/filename.jpg" alt="brief description">
-     inside the existing <div class="slide-photo"> wrapper.
-
-  3. Edit .caption-title and .caption-sub text.
-
-  4. Choose a layout class on each .slide to control composition:
-       layout-left         tall portrait, left-aligned, space on right
-       layout-right        landscape, right-aligned, space on left
-       layout-centre-tall  narrow portrait, centred, lots of air
-       layout-wide         near-full-width landscape
-       layout-small-left   smaller portrait, left-offset
-       layout-small-right  smaller landscape, right-offset
-
-  5. Add or remove slides freely. Hero slide should always be first.
--->
+<!-- ═══ SELECTED WORKS ═══ -->
 <div class="page active" id="photography">
   <div class="scroll-container" id="scrollContainer">
 
@@ -462,33 +292,29 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 1 — left portrait -->
-    <div class="slide layout-left">
-      <div class="slide-photo">
-      <img src="photos/dolomites02.jpg" alt="Dolomites 2024">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
-      </div>
-      <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
-      </div>
-    </div>
-
-    <!-- SLIDE 2 — right landscape -->
+    <!-- SLIDE 1 — dolomites01 landscape → layout-right -->
     <div class="slide layout-right">
       <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
+        <img src="dolomites01.jpg" alt="Dolomites landscape">
       </div>
       <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
+        <div class="caption-title">Dolomites</div>
+        <div class="caption-sub">Italy · 2023</div>
       </div>
     </div>
 
-    <!-- SLIDE 3 — centre tall -->
+    <!-- SLIDE 2 — dolomites02 portrait → layout-left -->
+    <div class="slide layout-left">
+      <div class="slide-photo">
+        <img src="dolomites02.jpg" alt="Dolomites portrait">
+      </div>
+      <div class="slide-caption">
+        <div class="caption-title">Dolomites</div>
+        <div class="caption-sub">Italy · 2023</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — placeholder -->
     <div class="slide layout-centre-tall">
       <div class="slide-photo">
         <div class="slide-photo-placeholder">
@@ -501,7 +327,7 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 4 — wide landscape -->
+    <!-- SLIDE 4 — placeholder -->
     <div class="slide layout-wide">
       <div class="slide-photo">
         <div class="slide-photo-placeholder">
@@ -514,7 +340,7 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 5 — small left -->
+    <!-- SLIDE 5 — placeholder -->
     <div class="slide layout-small-left">
       <div class="slide-photo">
         <div class="slide-photo-placeholder">
@@ -527,34 +353,8 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 6 — left portrait -->
-    <div class="slide layout-left">
-      <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
-      </div>
-      <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
-      </div>
-    </div>
-
-    <!-- SLIDE 7 — small right -->
+    <!-- SLIDE 6 — placeholder -->
     <div class="slide layout-small-right">
-      <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
-      </div>
-      <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
-      </div>
-    </div>
-
-    <!-- SLIDE 8 — right landscape -->
-    <div class="slide layout-right">
       <div class="slide-photo">
         <div class="slide-photo-placeholder">
           <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -627,16 +427,15 @@ const container = document.getElementById('scrollContainer');
 const slides    = Array.from(document.querySelectorAll('.scroll-container .slide'));
 
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    e.target.classList.toggle('in-view', e.isIntersecting);
-  });
+  entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
 }, { root: container, threshold: 0.55 });
 
 slides.forEach(s => obs.observe(s));
 
-// Trigger hero
-const hero = document.querySelector('.slide-hero');
-if (hero) setTimeout(() => hero.classList.add('in-view'), 60);
+setTimeout(() => {
+  const hero = document.querySelector('.slide-hero');
+  if (hero) hero.classList.add('in-view');
+}, 60);
 </script>
 
 </body>
