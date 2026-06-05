@@ -166,12 +166,6 @@ nav {
 }
 .slide.in-view .slide-photo img { transform: scale(1.0); }
 
-.slide-photo-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-}
-.slide-photo-placeholder svg { opacity: 0.18; }
-
 /* ── CAPTION ── */
 .slide-caption {
   position: absolute;
@@ -196,23 +190,30 @@ nav {
 }
 
 /* ── LAYOUT VARIANTS ── */
-.layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
-.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
+/* landscape, right-aligned, caption bottom-left */
 .layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
 .layout-right .slide-caption { left: 8vw; bottom: 16vh; }
 
+/* portrait, left-aligned, caption bottom-right */
+.layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
+.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
+
+/* portrait, centred, lots of breathing room */
 .layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
 .layout-centre-tall .slide-caption { left: 50%; transform: translateX(-50%); bottom: 5.5vh; text-align: center; white-space: nowrap; }
 .layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* landscape, near full width */
 .layout-wide .slide-photo   { left: 8vw; right: 8vw; top: 14vh; width: 84vw; height: 64vh; }
 .layout-wide .slide-caption { left: 8vw; bottom: 7vh; }
 
+/* portrait, smaller, offset left, caption midright */
 .layout-small-left .slide-photo   { left: 14vw; top: 20vh; width: 28vw; height: 60vh; }
 .layout-small-left .slide-caption { right: 10vw; top: 50%; transform: translateY(-50%); }
 .layout-small-left.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
 
+/* landscape, smaller, offset right, caption midleft */
 .layout-small-right .slide-photo   { right: 12vw; top: 22vh; width: 46vw; height: 55vh; }
 .layout-small-right .slide-caption { left: 8vw; top: 50%; transform: translateY(-50%); }
 .layout-small-right.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
@@ -250,10 +251,10 @@ nav {
 @media (max-width: 700px) {
   nav { padding: 22px 24px; }
   .slide-hero { padding: 0 24px 36px; }
-  .layout-left .slide-photo   { left:5vw; width:70vw; top:14vh; height:66vh; }
-  .layout-left .slide-caption { right:5vw; bottom:10vh; }
   .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
   .layout-right .slide-caption{ left:5vw; bottom:10vh; }
+  .layout-left .slide-photo   { left:5vw; width:70vw; top:14vh; height:66vh; }
+  .layout-left .slide-caption { right:5vw; bottom:10vh; text-align:left; }
   .layout-centre-tall .slide-photo { width:58vw; top:12vh; height:68vh; }
   .layout-wide .slide-photo   { left:4vw; right:4vw; width:92vw; top:15vh; height:58vh; }
   .layout-small-left .slide-photo  { left:5vw; width:60vw; height:52vh; top:22vh; }
@@ -292,7 +293,7 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 1 — dolomites01 landscape → layout-right -->
+    <!-- 1 — dolomites01 landscape → right -->
     <div class="slide layout-right">
       <div class="slide-photo">
         <img src="dolomites01.jpg" alt="Dolomites landscape">
@@ -303,7 +304,7 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 2 — dolomites02 portrait → layout-left -->
+    <!-- 2 — dolomites02 portrait → left -->
     <div class="slide layout-left">
       <div class="slide-photo">
         <img src="dolomites02.jpg" alt="Dolomites portrait">
@@ -314,55 +315,47 @@ nav {
       </div>
     </div>
 
-    <!-- SLIDE 3 — placeholder -->
-    <div class="slide layout-centre-tall">
-      <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
-      </div>
-      <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
-      </div>
-    </div>
-
-    <!-- SLIDE 4 — placeholder -->
+    <!-- 3 — botswana landscape → wide -->
     <div class="slide layout-wide">
       <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
+        <img src="botswana.jpg" alt="Chobe National Park Botswana">
       </div>
       <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
+        <div class="caption-title">Chobe National Park</div>
+        <div class="caption-sub">Botswana · 2014</div>
       </div>
     </div>
 
-    <!-- SLIDE 5 — placeholder -->
-    <div class="slide layout-small-left">
+    <!-- 4 — flatiron portrait → centre-tall -->
+    <div class="slide layout-centre-tall">
       <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
+        <img src="flatiron.jpg" alt="Flatiron Building NYC">
       </div>
       <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
+        <div class="caption-title">Flatiron</div>
+        <div class="caption-sub">New York · 2016</div>
       </div>
     </div>
 
-    <!-- SLIDE 6 — placeholder -->
+    <!-- 5 — nyc-skyline landscape → small-right -->
     <div class="slide layout-small-right">
       <div class="slide-photo">
-        <div class="slide-photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
+        <img src="nyc-skyline.jpg" alt="Manhattan NYC skyline">
       </div>
       <div class="slide-caption">
-        <div class="caption-title">Title of photograph</div>
-        <div class="caption-sub">Location · Year</div>
+        <div class="caption-title">Manhattan</div>
+        <div class="caption-sub">New York · 2016</div>
+      </div>
+    </div>
+
+    <!-- 6 — muriwai landscape → right -->
+    <div class="slide layout-right">
+      <div class="slide-photo">
+        <img src="muriwai.jpg" alt="Muriwai West Auckland Coast">
+      </div>
+      <div class="slide-caption">
+        <div class="caption-title">West Auckland Coast</div>
+        <div class="caption-sub">Muriwai · 2017</div>
       </div>
     </div>
 
@@ -384,7 +377,7 @@ nav {
     </div>
     <div class="about-right">
       <div class="about-portrait">
-        <!-- Replace with: <img src="photos/portrait.jpg" alt="Shaneil Narsey"> -->
+        <!-- Replace with: <img src="portrait.jpg" alt="Shaneil Narsey"> -->
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1" style="opacity:0.18"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
       </div>
       <div class="about-rule"></div>
