@@ -73,7 +73,85 @@ nav {
 .page { display: none; position: fixed; inset: 0; background: var(--bg); }
 .page.active { display: block; }
 
-/* ── SCROLL CONTAINER ── */
+/* ══════════════════════════════════════
+   SPLASH PAGE
+══════════════════════════════════════ */
+#splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+}
+#splash.active { display: flex; }
+
+.splash-left {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 56px 56px;
+}
+
+.splash-name {
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: up 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.splash-meta {
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 1.8;
+  opacity: 0;
+  animation: up 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.splash-enter {
+  margin-top: 48px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  display: inline-block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  opacity: 0;
+  animation: up 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.splash-enter:hover { opacity: 0.4; }
+
+.splash-right {
+  width: 55%;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-right img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.05);
+  animation: zoom-in 1.4s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes zoom-in { to { transform: scale(1.0); } }
+@keyframes up      { to { opacity: 1; transform: translateY(0); } }
+
+/* ══════════════════════════════════════
+   SCROLL CONTAINER (selected works)
+══════════════════════════════════════ */
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -95,7 +173,7 @@ nav {
   align-items: center;
 }
 
-/* ── HERO ── */
+/* ── HERO inside selected works ── */
 .slide-hero {
   flex-direction: column;
   justify-content: flex-end;
@@ -148,7 +226,6 @@ nav {
   0%,100% { opacity: 0.35; }
   50%      { opacity: 0.8; }
 }
-@keyframes up     { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadein { to { opacity: 1; } }
 
 /* ── PHOTO ── */
@@ -175,6 +252,7 @@ nav {
   transition: opacity 0.65s 0.3s ease, transform 0.65s 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 .slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
+
 .caption-title {
   font-size: clamp(14px, 1.8vw, 20px);
   font-weight: 400;
@@ -191,32 +269,36 @@ nav {
 
 /* ── LAYOUT VARIANTS ── */
 
-/* landscape, right-aligned, caption bottom-left */
+/* landscape, right-aligned */
 .layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
 .layout-right .slide-caption { left: 8vw; bottom: 16vh; }
 
-/* portrait, left-aligned, caption bottom-right */
+/* portrait, left-aligned */
 .layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
 .layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* portrait, centred, lots of breathing room */
+/* portrait, centred — caption to the right */
 .layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
-.layout-centre-tall .slide-caption { left: 50%; transform: translateX(-50%); bottom: 5.5vh; text-align: center; white-space: nowrap; }
-.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateX(-50%) translateY(0); }
+.layout-centre-tall .slide-caption { right: 8vw; top: 50%; transform: translateY(-50%); text-align: right; }
+.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
 
-/* landscape, near full width */
-.layout-wide .slide-photo   { left: 8vw; right: 8vw; top: 14vh; width: 84vw; height: 64vh; }
-.layout-wide .slide-caption { left: 8vw; bottom: 7vh; }
+/* landscape, standard 16:9-ish, centred with breathing room */
+.layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 34vw; max-height: 64vh; }
+.layout-landscape .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* portrait, smaller, offset left, caption midright */
+/* portrait, smaller, offset left */
 .layout-small-left .slide-photo   { left: 14vw; top: 20vh; width: 28vw; height: 60vh; }
 .layout-small-left .slide-caption { right: 10vw; top: 50%; transform: translateY(-50%); }
 .layout-small-left.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
 
-/* landscape, smaller, offset right, caption midleft */
+/* landscape, smaller, offset right */
 .layout-small-right .slide-photo   { right: 12vw; top: 22vh; width: 46vw; height: 55vh; }
 .layout-small-right .slide-caption { left: 8vw; top: 50%; transform: translateY(-50%); }
 .layout-small-right.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
+
+/* wide, full bleed-ish */
+.layout-wide .slide-photo   { left: 8vw; right: 8vw; top: 14vh; width: 84vw; height: 64vh; }
+.layout-wide .slide-caption { left: 8vw; bottom: 7vh; }
 
 /* ── ABOUT ── */
 #about { overflow-y: auto; padding: 110px 44px 80px; }
@@ -248,15 +330,21 @@ nav {
 }
 .ig-link:hover { opacity: 0.4; }
 
+/* ── MOBILE ── */
 @media (max-width: 700px) {
   nav { padding: 22px 24px; }
-  .slide-hero { padding: 0 24px 36px; }
+  #splash { flex-direction: column; }
+  .splash-left { width: 100%; height: 50%; padding: 0 24px 32px; justify-content: flex-end; }
+  .splash-right { width: 100%; height: 50%; }
   .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
   .layout-right .slide-caption{ left:5vw; bottom:10vh; }
   .layout-left .slide-photo   { left:5vw; width:70vw; top:14vh; height:66vh; }
   .layout-left .slide-caption { right:5vw; bottom:10vh; text-align:left; }
   .layout-centre-tall .slide-photo { width:58vw; top:12vh; height:68vh; }
-  .layout-wide .slide-photo   { left:4vw; right:4vw; width:92vw; top:15vh; height:58vh; }
+  .layout-centre-tall .slide-caption { right:5vw; top:auto; bottom:10vh; transform:none; }
+  .layout-centre-tall.slide.in-view .slide-caption { transform:none; }
+  .layout-landscape .slide-photo { left:4vw; width:92vw; height:52vw; top:20vh; }
+  .layout-landscape .slide-caption { right:4vw; bottom:10vh; }
   .layout-small-left .slide-photo  { left:5vw; width:60vw; height:52vh; top:22vh; }
   .layout-small-left .slide-caption { right:5vw; top:auto; bottom:10vh; transform:none; }
   .layout-small-right .slide-photo { right:4vw; width:68vw; height:50vh; top:22vh; }
@@ -271,22 +359,38 @@ nav {
 <body>
 
 <nav>
-  <div class="nav-logo" onclick="showPage('photography')">Shaneil Narsey</div>
+  <div class="nav-logo" onclick="showPage('splash')">Shaneil Narsey</div>
   <ul class="nav-links">
-    <li id="nav-photography" class="active" onclick="showPage('photography')">Selected works</li>
+    <li id="nav-splash" class="active" onclick="showPage('splash')">Home</li>
+    <li id="nav-photography" onclick="showPage('photography')">Selected works</li>
     <li id="nav-about" onclick="showPage('about')">About</li>
     <li><a href="https://instagram.com/shaneiln" target="_blank">Instagram ↗</a></li>
   </ul>
 </nav>
 
+<!-- ═══ SPLASH ═══ -->
+<div id="splash" class="active">
+  <div class="splash-left">
+    <div class="splash-name">Shaneil Narsey</div>
+    <div class="splash-meta">
+      Architect<br>
+      Queenstown, New Zealand
+    </div>
+    <span class="splash-enter" onclick="showPage('photography')">Selected works →</span>
+  </div>
+  <div class="splash-right">
+    <img src="cover-image.jpg" alt="Cover image">
+  </div>
+</div>
+
 <!-- ═══ SELECTED WORKS ═══ -->
-<div class="page active" id="photography">
+<div class="page" id="photography">
   <div class="scroll-container" id="scrollContainer">
 
     <!-- HERO -->
     <div class="slide slide-hero">
       <div class="hero-label">Selected works</div>
-      <div class="hero-sub">Shaneil Narsey — Wanaka, New Zealand</div>
+      <div class="hero-sub">Shaneil Narsey — Queenstown, New Zealand</div>
       <div class="scroll-nudge">
         <span>Scroll</span>
         <div class="scroll-nudge-line"></div>
@@ -315,8 +419,8 @@ nav {
       </div>
     </div>
 
-    <!-- 3 — botswana landscape → wide -->
-    <div class="slide layout-wide">
+    <!-- 3 — botswana landscape → landscape layout -->
+    <div class="slide layout-landscape">
       <div class="slide-photo">
         <img src="botswana.jpg" alt="Chobe National Park Botswana">
       </div>
@@ -326,7 +430,7 @@ nav {
       </div>
     </div>
 
-    <!-- 4 — flatiron portrait → centre-tall -->
+    <!-- 4 — flatiron portrait → centre-tall, caption right -->
     <div class="slide layout-centre-tall">
       <div class="slide-photo">
         <img src="flatiron.jpg" alt="Flatiron Building NYC">
@@ -369,7 +473,7 @@ nav {
       <p class="about-label">About</p>
       <h1 class="about-heading">Architect.<br>Photographer.</h1>
       <div class="about-body">
-        <p>I'm Shaneil Narsey, an architect based in Wanaka, New Zealand. My work sits at the intersection of built form and natural landscape — the way light moves through a space, how materials age, where architecture ends and environment begins.</p>
+        <p>I'm Shaneil Narsey, an architect based in Queenstown, New Zealand. My work sits at the intersection of built form and natural landscape — the way light moves through a space, how materials age, where architecture ends and environment begins.</p>
         <p>Photography is how I see. It sharpens the way I approach design — training attention on shadow, texture, proportion, and the quiet details that make a place feel alive.</p>
         <p>Based in the South Island, I'm endlessly drawn to the scale and stillness of the Southern Alps, the quality of light over Lake Wanaka, and the raw materiality of the high country.</p>
       </div>
@@ -384,7 +488,7 @@ nav {
       <div class="about-details">
         <div>
           <div class="detail-label">Based</div>
-          <div class="detail-value">Wanaka, NZ</div>
+          <div class="detail-value">Queenstown, NZ</div>
         </div>
         <div>
           <div class="detail-label">Discipline</div>
@@ -405,11 +509,20 @@ nav {
 
 <script>
 function showPage(id) {
+  // Hide splash separately since it's not a .page
+  document.getElementById('splash').classList.remove('active');
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+
+  if (id === 'splash') {
+    document.getElementById('splash').classList.add('active');
+  } else {
+    document.getElementById(id).classList.add('active');
+  }
+
   const navEl = document.getElementById('nav-' + id);
   if (navEl) navEl.classList.add('active');
+
   if (id === 'photography') {
     const sc = document.getElementById('scrollContainer');
     if (sc) sc.scrollTop = 0;
