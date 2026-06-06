@@ -75,13 +75,9 @@ nav {
 .page.active { display: block; }
 
 /* ══════════════════════════════════════
-   SPLASH — full bleed
+   SPLASH
 ══════════════════════════════════════ */
-#splash {
-  display: none;
-  position: fixed;
-  inset: 0;
-}
+#splash { display: none; position: fixed; inset: 0; }
 #splash.active { display: block; }
 
 .splash-bg {
@@ -96,8 +92,6 @@ nav {
   transform: scale(1.06);
   animation: zoom-in 2s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
-/* dark gradient so text reads over photo */
 .splash-bg::after {
   content: '';
   position: absolute;
@@ -117,7 +111,6 @@ nav {
   z-index: 10;
 }
 
-/* Name scramble */
 .splash-name {
   font-size: clamp(36px, 5vw, 68px);
   font-weight: 500;
@@ -125,19 +118,10 @@ nav {
   line-height: 1.0;
   color: #fff;
   display: flex;
-  gap: 0.22em; /* space between first and last name */
+  gap: 0.22em;
 }
-
-.name-word {
-  display: flex;
-  overflow: hidden;
-}
-
-.name-char {
-  display: inline-block;
-  opacity: 0;
-  transition: opacity 0.12s ease;
-}
+.name-word { display: flex; }
+.name-char { display: inline-block; opacity: 0; transition: opacity 0.12s ease; }
 
 .splash-meta {
   margin-top: 14px;
@@ -149,10 +133,10 @@ nav {
   animation: fade-up 0.8s 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-@keyframes zoom-in  { to { transform: scale(1.0); } }
-@keyframes fade-up  { to { opacity: 1; transform: translateY(0); } }
-@keyframes up       { to { opacity: 1; transform: translateY(0); } }
-@keyframes fadein   { to { opacity: 1; } }
+@keyframes zoom-in { to { transform: scale(1.0); } }
+@keyframes fade-up { to { opacity: 1; } }
+@keyframes up      { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadein  { to { opacity: 1; } }
 
 /* ══════════════════════════════════════
    SCROLL CONTAINER
@@ -262,21 +246,83 @@ nav {
   color: var(--mid);
 }
 
-/* ── LAYOUTS ── */
-.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
-.layout-right .slide-caption { left: 8vw; bottom: 16vh; }
+/* ══════════════════════════════════════
+   LAYOUT VARIANTS
+   All photo sizes use explicit px-safe
+   aspect ratios via width + aspect-ratio
+══════════════════════════════════════ */
 
-.layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
-.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
+/* LANDSCAPE — right side, 3:2 ratio */
+.layout-right .slide-photo {
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54vw;
+  aspect-ratio: 3 / 2;
+  max-height: 70vh;
+  height: auto;
+}
+.layout-right .slide-caption { left: 8vw; bottom: 14vh; }
 
-.layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
-.layout-centre-tall .slide-caption { right: 8vw; bottom: 10vh; text-align: right; }
+/* PORTRAIT — left side, 9:16 ratio — EXPLICIT aspect-ratio */
+.layout-left .slide-photo {
+  left: 10vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34vw;
+  aspect-ratio: 9 / 16;
+  max-height: 82vh;
+  height: auto;
+}
+.layout-left .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+
+/* PORTRAIT centred — 9:16 */
+.layout-centre-tall .slide-photo {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28vw;
+  aspect-ratio: 9 / 16;
+  max-height: 82vh;
+  height: auto;
+}
+.layout-centre-tall .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 .layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
-.layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 38vw; max-height: 62vh; }
-.layout-landscape .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
+/* LANDSCAPE standard — left offset, 16:9 ratio */
+.layout-landscape .slide-photo {
+  left: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 62vw;
+  aspect-ratio: 16 / 9;
+  max-height: 65vh;
+  height: auto;
+}
+.layout-landscape .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 
-.layout-small-right .slide-photo   { right: 8vw; top: 22vh; width: 48vw; height: 30vw; max-height: 56vh; }
+/* LANDSCAPE 16:9 — right offset */
+.layout-landscape-right .slide-photo {
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 62vw;
+  aspect-ratio: 16 / 9;
+  max-height: 65vh;
+  height: auto;
+}
+.layout-landscape-right .slide-caption { left: 8vw; bottom: 14vh; }
+
+/* LANDSCAPE small — right offset */
+.layout-small-right .slide-photo {
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48vw;
+  aspect-ratio: 3 / 2;
+  max-height: 58vh;
+  height: auto;
+}
 .layout-small-right .slide-caption { left: 8vw; bottom: 22vh; }
 
 /* ── ABOUT ── */
@@ -313,16 +359,18 @@ nav {
 @media (max-width: 700px) {
   nav { padding: 22px 24px; }
   .splash-content { left: 28px; bottom: 36px; }
-  .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
-  .layout-right .slide-caption{ left:5vw; bottom:10vh; }
-  .layout-left .slide-photo   { left:4vw; width:70vw; top:14vh; height:66vh; }
-  .layout-left .slide-caption { right:4vw; bottom:10vh; text-align:left; }
-  .layout-centre-tall .slide-photo { width:58vw; top:12vh; height:68vh; }
-  .layout-centre-tall .slide-caption { right:4vw; bottom:10vh; }
-  .layout-landscape .slide-photo { left:4vw; width:92vw; height:58vw; top:18vh; }
-  .layout-landscape .slide-caption { right:4vw; bottom:10vh; }
-  .layout-small-right .slide-photo { right:4vw; width:80vw; height:50vw; top:20vh; }
-  .layout-small-right .slide-caption { left:4vw; bottom:10vh; }
+  .layout-right .slide-photo,
+  .layout-landscape-right .slide-photo { width: 88vw; right: 4vw; }
+  .layout-right .slide-caption,
+  .layout-landscape-right .slide-caption { left: 4vw; bottom: 8vh; }
+  .layout-left .slide-photo { width: 72vw; left: 4vw; }
+  .layout-left .slide-caption { right: 4vw; bottom: 8vh; text-align: left; }
+  .layout-centre-tall .slide-photo { width: 56vw; }
+  .layout-centre-tall .slide-caption { right: 4vw; bottom: 8vh; }
+  .layout-landscape .slide-photo { width: 90vw; left: 4vw; }
+  .layout-landscape .slide-caption { right: 4vw; bottom: 8vh; }
+  .layout-small-right .slide-photo { width: 82vw; right: 4vw; }
+  .layout-small-right .slide-caption { left: 4vw; bottom: 8vh; }
   #about { padding: 96px 24px 60px; }
   .about-wrap { grid-template-columns:1fr; gap:36px; }
   .about-right { padding-top:0; }
@@ -367,14 +415,16 @@ nav {
       </div>
     </div>
 
+    <!-- 1 dolomites01 — landscape right -->
     <div class="slide layout-right">
-      <div class="slide-photo"><img src="dolomites01.jpg" alt="Dolomites landscape"></div>
+      <div class="slide-photo"><img src="dolomites01.jpg" alt="Dolomites"></div>
       <div class="slide-caption">
         <div class="caption-title">Dolomites</div>
         <div class="caption-sub">Italy · 2023</div>
       </div>
     </div>
 
+    <!-- 2 dolomites02 — portrait 9:16 left -->
     <div class="slide layout-left">
       <div class="slide-photo"><img src="dolomites02.jpg" alt="Dolomites portrait"></div>
       <div class="slide-caption">
@@ -383,6 +433,7 @@ nav {
       </div>
     </div>
 
+    <!-- 3 botswana — landscape -->
     <div class="slide layout-landscape">
       <div class="slide-photo"><img src="botswana.jpg" alt="Chobe National Park"></div>
       <div class="slide-caption">
@@ -391,6 +442,7 @@ nav {
       </div>
     </div>
 
+    <!-- 4 flatiron — portrait centre -->
     <div class="slide layout-centre-tall">
       <div class="slide-photo"><img src="flatiron.jpg" alt="Flatiron NYC"></div>
       <div class="slide-caption">
@@ -399,6 +451,7 @@ nav {
       </div>
     </div>
 
+    <!-- 5 nyc-skyline — landscape small right -->
     <div class="slide layout-small-right">
       <div class="slide-photo"><img src="nyc-skyline.jpg" alt="Manhattan skyline"></div>
       <div class="slide-caption">
@@ -407,7 +460,8 @@ nav {
       </div>
     </div>
 
-    <div class="slide layout-right">
+    <!-- 6 muriwai — landscape right -->
+    <div class="slide layout-landscape-right">
       <div class="slide-photo"><img src="muriwai.jpg" alt="Muriwai West Auckland Coast"></div>
       <div class="slide-caption">
         <div class="caption-title">West Auckland Coast</div>
@@ -415,11 +469,30 @@ nav {
       </div>
     </div>
 
+    <!-- 7 kea — landscape 16:9 -->
     <div class="slide layout-landscape">
-      <div class="slide-photo"><img src="kea.jpeg" alt="Kea Mt Aspiring National Park"></div>
+      <div class="slide-photo"><img src="kea.jpeg" alt="Kea Mt Aspiring"></div>
       <div class="slide-caption">
         <div class="caption-title">Kea</div>
         <div class="caption-sub">Mt Aspiring National Park</div>
+      </div>
+    </div>
+
+    <!-- 8 amalfi — portrait 9:16 left -->
+    <div class="slide layout-left">
+      <div class="slide-photo"><img src="amalfi.jpeg" alt="Amalfi Coast"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Amalfi Coast</div>
+        <div class="caption-sub">Italy · 2023</div>
+      </div>
+    </div>
+
+    <!-- 9 french-ridge — landscape right -->
+    <div class="slide layout-landscape-right">
+      <div class="slide-photo"><img src="french-ridge.jpeg" alt="French Ridge Mt Aspiring"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Mt Aspiring National Park</div>
+        <div class="caption-sub">New Zealand</div>
       </div>
     </div>
 
@@ -455,62 +528,53 @@ nav {
 </div>
 
 <script>
-/* ── SCRAMBLE / REVEAL NAME ANIMATION ── */
+/* ── SCRAMBLE NAME ── */
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 const NAME  = ['Shaneil', 'Narsey'];
 
 function buildName() {
   NAME.forEach((word, wi) => {
     const container = document.getElementById('word' + (wi + 1));
+    container.innerHTML = '';
     word.split('').forEach(letter => {
       const span = document.createElement('span');
       span.className = 'name-char';
       span.dataset.final = letter;
-      span.textContent = letter === ' ' ? '\u00A0' : CHARS[Math.floor(Math.random() * CHARS.length)];
+      span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+      span.style.opacity = 0;
       container.appendChild(span);
     });
   });
 }
 
 function scrambleLetter(span, finalChar, duration) {
-  const start   = performance.now();
-  const flicker = 55; // ms between each random char
-  let   last    = start;
-
+  const start  = performance.now();
+  const flicker = 55;
+  let   last   = start;
   function tick(now) {
-    // Fade in opacity over first 60% of duration
     const progress = Math.min((now - start) / duration, 1);
     span.style.opacity = Math.min(progress * 1.8, 1);
-
     if (now - last > flicker && progress < 1) {
       span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
       last = now;
     }
-
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    } else {
-      span.textContent = finalChar;
-      span.style.opacity = 1;
-    }
+    if (progress < 1) requestAnimationFrame(tick);
+    else { span.textContent = finalChar; span.style.opacity = 1; }
   }
   requestAnimationFrame(tick);
 }
 
 function runNameAnimation() {
   const allChars  = document.querySelectorAll('.name-char');
-  const totalTime = 1200; // ms for full name to resolve
+  const totalTime = 1200;
   const count     = allChars.length;
-
   allChars.forEach((span, i) => {
-    const delay    = 80 + i * (totalTime / count);
-    const duration = 320;
-    setTimeout(() => scrambleLetter(span, span.dataset.final, duration), delay);
+    const delay = 80 + i * (totalTime / count);
+    setTimeout(() => scrambleLetter(span, span.dataset.final, 320), delay);
   });
 }
 
 buildName();
-// Small delay so page has painted before animation starts
 setTimeout(runNameAnimation, 300);
 
 /* ── PAGE SWITCHING ── */
@@ -521,8 +585,7 @@ function showPage(id) {
 
   if (id === 'splash') {
     document.getElementById('splash').classList.add('active');
-    // Re-run name animation on returning home
-    document.querySelectorAll('.name-char').forEach(s => { s.style.opacity = 0; });
+    buildName();
     setTimeout(runNameAnimation, 200);
   } else {
     document.getElementById(id).classList.add('active');
@@ -536,16 +599,13 @@ function showPage(id) {
   }
 }
 
-/* ── SCROLL SNAP OBSERVER ── */
+/* ── SCROLL OBSERVER ── */
 const container = document.getElementById('scrollContainer');
 const slides    = Array.from(document.querySelectorAll('.scroll-container .slide'));
-
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
 }, { root: container, threshold: 0.55 });
-
 slides.forEach(s => obs.observe(s));
-
 setTimeout(() => {
   const hero = document.querySelector('.slide-hero');
   if (hero) hero.classList.add('in-view');
