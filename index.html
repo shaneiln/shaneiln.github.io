@@ -75,70 +75,84 @@ nav {
 .page.active { display: block; }
 
 /* ══════════════════════════════════════
-   SPLASH
+   SPLASH — full bleed
 ══════════════════════════════════════ */
-#splash { display: none; position: fixed; inset: 0; background: var(--bg); }
-#splash.active { display: flex; }
+#splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+}
+#splash.active { display: block; }
 
-.splash-left {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 56px 56px;
-}
-.splash-name {
-  font-size: clamp(32px, 3.8vw, 52px);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-  opacity: 0;
-  transform: translateY(18px);
-  animation: up 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.splash-meta {
-  margin-top: 14px;
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--mid);
-  line-height: 1.8;
-  opacity: 0;
-  animation: up 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.splash-enter {
-  margin-top: 48px;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-  display: inline-block;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  opacity: 0;
-  animation: up 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.splash-enter:hover { opacity: 0.4; }
-.splash-right {
-  width: 55%;
-  position: relative;
-  overflow: hidden;
-}
-.splash-right img {
+.splash-bg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+}
+.splash-bg img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  transform: scale(1.05);
-  animation: zoom-in 1.4s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+  transform: scale(1.06);
+  animation: zoom-in 2s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-@keyframes zoom-in { to { transform: scale(1.0); } }
-@keyframes up      { to { opacity: 1; transform: translateY(0); } }
-@keyframes fadein  { to { opacity: 1; } }
+/* dark gradient so text reads over photo */
+.splash-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.52) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.08) 100%
+  );
+}
+
+.splash-content {
+  position: absolute;
+  bottom: 52px;
+  left: 52px;
+  z-index: 10;
+}
+
+/* Name scramble */
+.splash-name {
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: #fff;
+  display: flex;
+  gap: 0.22em; /* space between first and last name */
+}
+
+.name-word {
+  display: flex;
+  overflow: hidden;
+}
+
+.name-char {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.splash-meta {
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  opacity: 0;
+  animation: fade-up 0.8s 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes zoom-in  { to { transform: scale(1.0); } }
+@keyframes fade-up  { to { opacity: 1; transform: translateY(0); } }
+@keyframes up       { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadein   { to { opacity: 1; } }
 
 /* ══════════════════════════════════════
    SCROLL CONTAINER
@@ -248,28 +262,20 @@ nav {
   color: var(--mid);
 }
 
-/* ══════════════════════════════════════
-   LAYOUT VARIANTS
-══════════════════════════════════════ */
-
-/* landscape, right-aligned, caption bottom-left */
+/* ── LAYOUTS ── */
 .layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
 .layout-right .slide-caption { left: 8vw; bottom: 16vh; }
 
-/* portrait, left-aligned, caption bottom-right */
 .layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
 .layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* portrait, centred, caption bottom-right */
 .layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
 .layout-centre-tall .slide-caption { right: 8vw; bottom: 10vh; text-align: right; }
 .layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
-/* landscape, standard ratio, left-offset, caption bottom-right */
 .layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 38vw; max-height: 62vh; }
 .layout-landscape .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* landscape, smaller, right-offset, caption bottom-left */
 .layout-small-right .slide-photo   { right: 8vw; top: 22vh; width: 48vw; height: 30vw; max-height: 56vh; }
 .layout-small-right .slide-caption { left: 8vw; bottom: 22vh; }
 
@@ -306,9 +312,7 @@ nav {
 /* ── MOBILE ── */
 @media (max-width: 700px) {
   nav { padding: 22px 24px; }
-  #splash { flex-direction: column; }
-  .splash-left { width:100%; height:50%; padding: 0 24px 32px; }
-  .splash-right { width:100%; height:50%; }
+  .splash-content { left: 28px; bottom: 36px; }
   .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
   .layout-right .slide-caption{ left:5vw; bottom:10vh; }
   .layout-left .slide-photo   { left:4vw; width:70vw; top:14vh; height:66vh; }
@@ -339,16 +343,15 @@ nav {
 
 <!-- ═══ SPLASH ═══ -->
 <div id="splash" class="active">
-  <div class="splash-left">
-    <div class="splash-name">Shaneil Narsey</div>
-    <div class="splash-meta">
-      Architect<br>
-      Queenstown, New Zealand
-    </div>
-    <span class="splash-enter" onclick="showPage('photography')">Selected works →</span>
+  <div class="splash-bg">
+    <img src="cover-image.jpeg" alt="Cover">
   </div>
-  <div class="splash-right">
-    <img src="cover-image.jpeg" alt="Cover image">
+  <div class="splash-content">
+    <div class="splash-name" id="splashName">
+      <span class="name-word" id="word1"></span>
+      <span class="name-word" id="word2"></span>
+    </div>
+    <div class="splash-meta">Queenstown, New Zealand</div>
   </div>
 </div>
 
@@ -356,7 +359,6 @@ nav {
 <div class="page" id="photography">
   <div class="scroll-container" id="scrollContainer">
 
-    <!-- HERO -->
     <div class="slide slide-hero">
       <div class="hero-label">Selected works</div>
       <div class="scroll-nudge">
@@ -365,77 +367,56 @@ nav {
       </div>
     </div>
 
-    <!-- 1 — dolomites01 landscape → right -->
     <div class="slide layout-right">
-      <div class="slide-photo">
-        <img src="dolomites01.jpg" alt="Dolomites landscape">
-      </div>
+      <div class="slide-photo"><img src="dolomites01.jpg" alt="Dolomites landscape"></div>
       <div class="slide-caption">
         <div class="caption-title">Dolomites</div>
         <div class="caption-sub">Italy · 2023</div>
       </div>
     </div>
 
-    <!-- 2 — dolomites02 portrait → left -->
     <div class="slide layout-left">
-      <div class="slide-photo">
-        <img src="dolomites02.jpg" alt="Dolomites portrait">
-      </div>
+      <div class="slide-photo"><img src="dolomites02.jpg" alt="Dolomites portrait"></div>
       <div class="slide-caption">
         <div class="caption-title">Dolomites</div>
         <div class="caption-sub">Italy · 2023</div>
       </div>
     </div>
 
-    <!-- 3 — botswana landscape → landscape -->
     <div class="slide layout-landscape">
-      <div class="slide-photo">
-        <img src="botswana.jpg" alt="Chobe National Park Botswana">
-      </div>
+      <div class="slide-photo"><img src="botswana.jpg" alt="Chobe National Park"></div>
       <div class="slide-caption">
         <div class="caption-title">Chobe National Park</div>
         <div class="caption-sub">Botswana · 2014</div>
       </div>
     </div>
 
-    <!-- 4 — flatiron portrait → centre-tall -->
     <div class="slide layout-centre-tall">
-      <div class="slide-photo">
-        <img src="flatiron.jpg" alt="Flatiron Building NYC">
-      </div>
+      <div class="slide-photo"><img src="flatiron.jpg" alt="Flatiron NYC"></div>
       <div class="slide-caption">
         <div class="caption-title">Flatiron</div>
         <div class="caption-sub">New York · 2016</div>
       </div>
     </div>
 
-    <!-- 5 — nyc-skyline landscape → small-right -->
     <div class="slide layout-small-right">
-      <div class="slide-photo">
-        <img src="nyc-skyline.jpg" alt="Manhattan NYC skyline">
-      </div>
+      <div class="slide-photo"><img src="nyc-skyline.jpg" alt="Manhattan skyline"></div>
       <div class="slide-caption">
         <div class="caption-title">Manhattan</div>
         <div class="caption-sub">New York · 2016</div>
       </div>
     </div>
 
-    <!-- 6 — muriwai landscape → right -->
     <div class="slide layout-right">
-      <div class="slide-photo">
-        <img src="muriwai.jpg" alt="Muriwai West Auckland Coast">
-      </div>
+      <div class="slide-photo"><img src="muriwai.jpg" alt="Muriwai West Auckland Coast"></div>
       <div class="slide-caption">
         <div class="caption-title">West Auckland Coast</div>
         <div class="caption-sub">Muriwai · 2017</div>
       </div>
     </div>
 
-    <!-- 7 — kea landscape → landscape -->
     <div class="slide layout-landscape">
-      <div class="slide-photo">
-        <img src="kea.jpeg" alt="Kea Mt Aspiring National Park">
-      </div>
+      <div class="slide-photo"><img src="kea.jpeg" alt="Kea Mt Aspiring National Park"></div>
       <div class="slide-caption">
         <div class="caption-title">Kea</div>
         <div class="caption-sub">Mt Aspiring National Park</div>
@@ -460,33 +441,79 @@ nav {
     </div>
     <div class="about-right">
       <div class="about-portrait">
-        <!-- Replace with: <img src="portrait.jpg" alt="Shaneil Narsey"> -->
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#343434" stroke-width="1" style="opacity:0.18"><rect x="3" y="3" width="18" height="18" rx="1.5"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
       </div>
       <div class="about-rule"></div>
       <div class="about-details">
-        <div>
-          <div class="detail-label">Based</div>
-          <div class="detail-value">Queenstown, NZ</div>
-        </div>
-        <div>
-          <div class="detail-label">Discipline</div>
-          <div class="detail-value">Architecture</div>
-        </div>
-        <div>
-          <div class="detail-label">Focus</div>
-          <div class="detail-value">Landscape</div>
-        </div>
-        <div>
-          <div class="detail-label">Also</div>
-          <div class="detail-value">Photography</div>
-        </div>
+        <div><div class="detail-label">Based</div><div class="detail-value">Queenstown, NZ</div></div>
+        <div><div class="detail-label">Discipline</div><div class="detail-value">Architecture</div></div>
+        <div><div class="detail-label">Focus</div><div class="detail-value">Landscape</div></div>
+        <div><div class="detail-label">Also</div><div class="detail-value">Photography</div></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+/* ── SCRAMBLE / REVEAL NAME ANIMATION ── */
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const NAME  = ['Shaneil', 'Narsey'];
+
+function buildName() {
+  NAME.forEach((word, wi) => {
+    const container = document.getElementById('word' + (wi + 1));
+    word.split('').forEach(letter => {
+      const span = document.createElement('span');
+      span.className = 'name-char';
+      span.dataset.final = letter;
+      span.textContent = letter === ' ' ? '\u00A0' : CHARS[Math.floor(Math.random() * CHARS.length)];
+      container.appendChild(span);
+    });
+  });
+}
+
+function scrambleLetter(span, finalChar, duration) {
+  const start   = performance.now();
+  const flicker = 55; // ms between each random char
+  let   last    = start;
+
+  function tick(now) {
+    // Fade in opacity over first 60% of duration
+    const progress = Math.min((now - start) / duration, 1);
+    span.style.opacity = Math.min(progress * 1.8, 1);
+
+    if (now - last > flicker && progress < 1) {
+      span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+      last = now;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      span.textContent = finalChar;
+      span.style.opacity = 1;
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+function runNameAnimation() {
+  const allChars  = document.querySelectorAll('.name-char');
+  const totalTime = 1200; // ms for full name to resolve
+  const count     = allChars.length;
+
+  allChars.forEach((span, i) => {
+    const delay    = 80 + i * (totalTime / count);
+    const duration = 320;
+    setTimeout(() => scrambleLetter(span, span.dataset.final, duration), delay);
+  });
+}
+
+buildName();
+// Small delay so page has painted before animation starts
+setTimeout(runNameAnimation, 300);
+
+/* ── PAGE SWITCHING ── */
 function showPage(id) {
   document.getElementById('splash').classList.remove('active');
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -494,6 +521,9 @@ function showPage(id) {
 
   if (id === 'splash') {
     document.getElementById('splash').classList.add('active');
+    // Re-run name animation on returning home
+    document.querySelectorAll('.name-char').forEach(s => { s.style.opacity = 0; });
+    setTimeout(runNameAnimation, 200);
   } else {
     document.getElementById(id).classList.add('active');
     const navEl = document.getElementById('nav-' + id);
@@ -506,6 +536,7 @@ function showPage(id) {
   }
 }
 
+/* ── SCROLL SNAP OBSERVER ── */
 const container = document.getElementById('scrollContainer');
 const slides    = Array.from(document.querySelectorAll('.scroll-container .slide'));
 
