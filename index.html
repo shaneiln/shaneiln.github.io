@@ -52,7 +52,6 @@ nav {
   transition: color 0.2s;
 }
 .nav-home:hover { color: var(--ink); }
-
 .nav-links {
   display: flex;
   gap: 28px;
@@ -78,12 +77,7 @@ nav {
 /* ══════════════════════════════════════
    SPLASH
 ══════════════════════════════════════ */
-#splash {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-}
+#splash { display: none; position: fixed; inset: 0; background: var(--bg); }
 #splash.active { display: flex; }
 
 .splash-left {
@@ -127,7 +121,6 @@ nav {
   animation: up 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .splash-enter:hover { opacity: 0.4; }
-
 .splash-right {
   width: 55%;
   position: relative;
@@ -136,8 +129,7 @@ nav {
 .splash-right img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   transform: scale(1.05);
@@ -232,22 +224,22 @@ nav {
 }
 .slide.in-view .slide-photo img { transform: scale(1.0); }
 
-/* ── CAPTION — always pinned to bottom edge of photo ── */
+/* ── CAPTION ── */
 .slide-caption {
   position: absolute;
   z-index: 10;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(12px);
   transition: opacity 0.65s 0.3s ease, transform 0.65s 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 .slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
 .caption-title {
-  font-size: clamp(13px, 1.6vw, 18px);
+  font-size: clamp(14px, 1.8vw, 20px);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .caption-sub {
   font-size: 10px;
@@ -258,29 +250,28 @@ nav {
 
 /* ══════════════════════════════════════
    LAYOUT VARIANTS
-   All captions pinned to bottom of photo
 ══════════════════════════════════════ */
 
-/* landscape, right-aligned — caption bottom-left of photo */
-.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 34vw; max-height: 68vh; }
-.layout-right .slide-caption { right: 8vw; bottom: calc(84vh - 16vh - 34vw); }
+/* landscape, right-aligned, caption bottom-left */
+.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
+.layout-right .slide-caption { left: 8vw; bottom: 16vh; }
 
-/* portrait, left-aligned — caption bottom-right of photo */
+/* portrait, left-aligned, caption bottom-right */
 .layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
-.layout-left .slide-caption { left: 10vw; bottom: 12vh; }
+.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* portrait, centred — caption bottom-right of photo */
+/* portrait, centred, caption bottom-right */
 .layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
 .layout-centre-tall .slide-caption { right: 8vw; bottom: 10vh; text-align: right; }
 .layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
-/* landscape, standard ratio — caption pinned bottom-left of photo */
+/* landscape, standard ratio, left-offset, caption bottom-right */
 .layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 38vw; max-height: 62vh; }
-.layout-landscape .slide-caption { right: 8vw; bottom: calc(82vh - 18vh - 38vw); text-align: right; }
+.layout-landscape .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
 
-/* landscape smaller, offset right — caption bottom-left */
+/* landscape, smaller, right-offset, caption bottom-left */
 .layout-small-right .slide-photo   { right: 8vw; top: 22vh; width: 48vw; height: 30vw; max-height: 56vh; }
-.layout-small-right .slide-caption { left: 8vw; bottom: calc(78vh - 22vh - 30vw); }
+.layout-small-right .slide-caption { left: 8vw; bottom: 22vh; }
 
 /* ── ABOUT ── */
 #about { overflow-y: auto; padding: 110px 44px 80px; }
@@ -318,12 +309,12 @@ nav {
   #splash { flex-direction: column; }
   .splash-left { width:100%; height:50%; padding: 0 24px 32px; }
   .splash-right { width:100%; height:50%; }
-  .layout-right .slide-photo  { right:4vw; width:74vw; height:46vw; top:18vh; }
-  .layout-right .slide-caption{ right:4vw; bottom:8vh; }
-  .layout-left .slide-photo   { left:4vw; width:70vw; top:14vh; height:76vh; }
-  .layout-left .slide-caption { left:4vw; bottom:14vh; }
+  .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
+  .layout-right .slide-caption{ left:5vw; bottom:10vh; }
+  .layout-left .slide-photo   { left:4vw; width:70vw; top:14vh; height:66vh; }
+  .layout-left .slide-caption { right:4vw; bottom:10vh; text-align:left; }
   .layout-centre-tall .slide-photo { width:58vw; top:12vh; height:68vh; }
-  .layout-centre-tall .slide-caption { right:4vw; bottom:12vh; }
+  .layout-centre-tall .slide-caption { right:4vw; bottom:10vh; }
   .layout-landscape .slide-photo { left:4vw; width:92vw; height:58vw; top:18vh; }
   .layout-landscape .slide-caption { right:4vw; bottom:10vh; }
   .layout-small-right .slide-photo { right:4vw; width:80vw; height:50vw; top:20vh; }
@@ -374,7 +365,7 @@ nav {
       </div>
     </div>
 
-    <!-- 1 — dolomites01 landscape -->
+    <!-- 1 — dolomites01 landscape → right -->
     <div class="slide layout-right">
       <div class="slide-photo">
         <img src="dolomites01.jpg" alt="Dolomites landscape">
@@ -385,7 +376,7 @@ nav {
       </div>
     </div>
 
-    <!-- 2 — dolomites02 portrait -->
+    <!-- 2 — dolomites02 portrait → left -->
     <div class="slide layout-left">
       <div class="slide-photo">
         <img src="dolomites02.jpg" alt="Dolomites portrait">
@@ -396,7 +387,7 @@ nav {
       </div>
     </div>
 
-    <!-- 3 — botswana landscape -->
+    <!-- 3 — botswana landscape → landscape -->
     <div class="slide layout-landscape">
       <div class="slide-photo">
         <img src="botswana.jpg" alt="Chobe National Park Botswana">
@@ -407,7 +398,7 @@ nav {
       </div>
     </div>
 
-    <!-- 4 — flatiron portrait -->
+    <!-- 4 — flatiron portrait → centre-tall -->
     <div class="slide layout-centre-tall">
       <div class="slide-photo">
         <img src="flatiron.jpg" alt="Flatiron Building NYC">
@@ -418,7 +409,7 @@ nav {
       </div>
     </div>
 
-    <!-- 5 — nyc-skyline landscape -->
+    <!-- 5 — nyc-skyline landscape → small-right -->
     <div class="slide layout-small-right">
       <div class="slide-photo">
         <img src="nyc-skyline.jpg" alt="Manhattan NYC skyline">
@@ -429,7 +420,7 @@ nav {
       </div>
     </div>
 
-    <!-- 6 — muriwai landscape -->
+    <!-- 6 — muriwai landscape → right -->
     <div class="slide layout-right">
       <div class="slide-photo">
         <img src="muriwai.jpg" alt="Muriwai West Auckland Coast">
@@ -437,6 +428,17 @@ nav {
       <div class="slide-caption">
         <div class="caption-title">West Auckland Coast</div>
         <div class="caption-sub">Muriwai · 2017</div>
+      </div>
+    </div>
+
+    <!-- 7 — kea landscape → landscape -->
+    <div class="slide layout-landscape">
+      <div class="slide-photo">
+        <img src="kea.jpeg" alt="Kea Mt Aspiring National Park">
+      </div>
+      <div class="slide-caption">
+        <div class="caption-title">Kea</div>
+        <div class="caption-sub">Mt Aspiring National Park</div>
       </div>
     </div>
 
