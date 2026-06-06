@@ -41,16 +41,18 @@ nav {
   padding: 30px 44px;
   pointer-events: none;
 }
-.nav-logo {
-  font-size: 12px;
+.nav-home {
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   pointer-events: all;
   cursor: pointer;
-  transition: opacity 0.2s;
+  color: var(--mid);
+  transition: color 0.2s;
 }
-.nav-logo:hover { opacity: 0.4; }
+.nav-home:hover { color: var(--ink); }
+
 .nav-links {
   display: flex;
   gap: 28px;
@@ -74,7 +76,7 @@ nav {
 .page.active { display: block; }
 
 /* ══════════════════════════════════════
-   SPLASH PAGE
+   SPLASH
 ══════════════════════════════════════ */
 #splash {
   display: none;
@@ -91,7 +93,6 @@ nav {
   justify-content: flex-end;
   padding: 0 56px 56px;
 }
-
 .splash-name {
   font-size: clamp(32px, 3.8vw, 52px);
   font-weight: 300;
@@ -101,7 +102,6 @@ nav {
   transform: translateY(18px);
   animation: up 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
 .splash-meta {
   margin-top: 14px;
   font-size: 11px;
@@ -112,7 +112,6 @@ nav {
   opacity: 0;
   animation: up 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
 }
-
 .splash-enter {
   margin-top: 48px;
   font-size: 10px;
@@ -134,7 +133,6 @@ nav {
   position: relative;
   overflow: hidden;
 }
-
 .splash-right img {
   position: absolute;
   inset: 0;
@@ -148,9 +146,10 @@ nav {
 
 @keyframes zoom-in { to { transform: scale(1.0); } }
 @keyframes up      { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadein  { to { opacity: 1; } }
 
 /* ══════════════════════════════════════
-   SCROLL CONTAINER (selected works)
+   SCROLL CONTAINER
 ══════════════════════════════════════ */
 .scroll-container {
   height: 100vh;
@@ -173,7 +172,7 @@ nav {
   align-items: center;
 }
 
-/* ── HERO inside selected works ── */
+/* ── HERO ── */
 .slide-hero {
   flex-direction: column;
   justify-content: flex-end;
@@ -188,15 +187,6 @@ nav {
   opacity: 0;
   transform: translateY(16px);
   animation: up 0.85s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.hero-sub {
-  margin-top: 12px;
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--mid);
-  opacity: 0;
-  animation: up 0.85s 0.28s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .scroll-nudge {
   position: absolute;
@@ -226,7 +216,6 @@ nav {
   0%,100% { opacity: 0.35; }
   50%      { opacity: 0.8; }
 }
-@keyframes fadein { to { opacity: 1; } }
 
 /* ── PHOTO ── */
 .slide-photo {
@@ -243,22 +232,22 @@ nav {
 }
 .slide.in-view .slide-photo img { transform: scale(1.0); }
 
-/* ── CAPTION ── */
+/* ── CAPTION — always pinned to bottom edge of photo ── */
 .slide-caption {
   position: absolute;
   z-index: 10;
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(8px);
   transition: opacity 0.65s 0.3s ease, transform 0.65s 0.3s cubic-bezier(0.16,1,0.3,1);
 }
 .slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
 .caption-title {
-  font-size: clamp(14px, 1.8vw, 20px);
+  font-size: clamp(13px, 1.6vw, 18px);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 .caption-sub {
   font-size: 10px;
@@ -267,38 +256,31 @@ nav {
   color: var(--mid);
 }
 
-/* ── LAYOUT VARIANTS ── */
+/* ══════════════════════════════════════
+   LAYOUT VARIANTS
+   All captions pinned to bottom of photo
+══════════════════════════════════════ */
 
-/* landscape, right-aligned */
-.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 68vh; }
-.layout-right .slide-caption { left: 8vw; bottom: 16vh; }
+/* landscape, right-aligned — caption bottom-left of photo */
+.layout-right .slide-photo   { right: 8vw; top: 16vh; width: 54vw; height: 34vw; max-height: 68vh; }
+.layout-right .slide-caption { right: 8vw; bottom: calc(84vh - 16vh - 34vw); }
 
-/* portrait, left-aligned */
+/* portrait, left-aligned — caption bottom-right of photo */
 .layout-left .slide-photo   { left: 10vw; top: 12vh; width: 38vw; height: 76vh; }
-.layout-left .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
+.layout-left .slide-caption { left: 10vw; bottom: 12vh; }
 
-/* portrait, centred — caption to the right */
+/* portrait, centred — caption bottom-right of photo */
 .layout-centre-tall .slide-photo   { left: 50%; transform: translateX(-50%); top: 10vh; width: 32vw; height: 78vh; }
-.layout-centre-tall .slide-caption { right: 8vw; top: 50%; transform: translateY(-50%); text-align: right; }
-.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
+.layout-centre-tall .slide-caption { right: 8vw; bottom: 10vh; text-align: right; }
+.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
-/* landscape, standard 16:9-ish, centred with breathing room */
-.layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 34vw; max-height: 64vh; }
-.layout-landscape .slide-caption { right: 8vw; bottom: 18vh; text-align: right; }
+/* landscape, standard ratio — caption pinned bottom-left of photo */
+.layout-landscape .slide-photo   { left: 8vw; top: 18vh; width: 60vw; height: 38vw; max-height: 62vh; }
+.layout-landscape .slide-caption { right: 8vw; bottom: calc(82vh - 18vh - 38vw); text-align: right; }
 
-/* portrait, smaller, offset left */
-.layout-small-left .slide-photo   { left: 14vw; top: 20vh; width: 28vw; height: 60vh; }
-.layout-small-left .slide-caption { right: 10vw; top: 50%; transform: translateY(-50%); }
-.layout-small-left.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
-
-/* landscape, smaller, offset right */
-.layout-small-right .slide-photo   { right: 12vw; top: 22vh; width: 46vw; height: 55vh; }
-.layout-small-right .slide-caption { left: 8vw; top: 50%; transform: translateY(-50%); }
-.layout-small-right.slide.in-view .slide-caption { opacity: 1; transform: translateY(-50%); }
-
-/* wide, full bleed-ish */
-.layout-wide .slide-photo   { left: 8vw; right: 8vw; top: 14vh; width: 84vw; height: 64vh; }
-.layout-wide .slide-caption { left: 8vw; bottom: 7vh; }
+/* landscape smaller, offset right — caption bottom-left */
+.layout-small-right .slide-photo   { right: 8vw; top: 22vh; width: 48vw; height: 30vw; max-height: 56vh; }
+.layout-small-right .slide-caption { left: 8vw; bottom: calc(78vh - 22vh - 30vw); }
 
 /* ── ABOUT ── */
 #about { overflow-y: auto; padding: 110px 44px 80px; }
@@ -334,21 +316,18 @@ nav {
 @media (max-width: 700px) {
   nav { padding: 22px 24px; }
   #splash { flex-direction: column; }
-  .splash-left { width: 100%; height: 50%; padding: 0 24px 32px; justify-content: flex-end; }
-  .splash-right { width: 100%; height: 50%; }
-  .layout-right .slide-photo  { right:4vw; width:74vw; top:16vh; height:60vh; }
-  .layout-right .slide-caption{ left:5vw; bottom:10vh; }
-  .layout-left .slide-photo   { left:5vw; width:70vw; top:14vh; height:66vh; }
-  .layout-left .slide-caption { right:5vw; bottom:10vh; text-align:left; }
+  .splash-left { width:100%; height:50%; padding: 0 24px 32px; }
+  .splash-right { width:100%; height:50%; }
+  .layout-right .slide-photo  { right:4vw; width:74vw; height:46vw; top:18vh; }
+  .layout-right .slide-caption{ right:4vw; bottom:8vh; }
+  .layout-left .slide-photo   { left:4vw; width:70vw; top:14vh; height:76vh; }
+  .layout-left .slide-caption { left:4vw; bottom:14vh; }
   .layout-centre-tall .slide-photo { width:58vw; top:12vh; height:68vh; }
-  .layout-centre-tall .slide-caption { right:5vw; top:auto; bottom:10vh; transform:none; }
-  .layout-centre-tall.slide.in-view .slide-caption { transform:none; }
-  .layout-landscape .slide-photo { left:4vw; width:92vw; height:52vw; top:20vh; }
+  .layout-centre-tall .slide-caption { right:4vw; bottom:12vh; }
+  .layout-landscape .slide-photo { left:4vw; width:92vw; height:58vw; top:18vh; }
   .layout-landscape .slide-caption { right:4vw; bottom:10vh; }
-  .layout-small-left .slide-photo  { left:5vw; width:60vw; height:52vh; top:22vh; }
-  .layout-small-left .slide-caption { right:5vw; top:auto; bottom:10vh; transform:none; }
-  .layout-small-right .slide-photo { right:4vw; width:68vw; height:50vh; top:22vh; }
-  .layout-small-right .slide-caption { left:5vw; top:auto; bottom:10vh; transform:none; }
+  .layout-small-right .slide-photo { right:4vw; width:80vw; height:50vw; top:20vh; }
+  .layout-small-right .slide-caption { left:4vw; bottom:10vh; }
   #about { padding: 96px 24px 60px; }
   .about-wrap { grid-template-columns:1fr; gap:36px; }
   .about-right { padding-top:0; }
@@ -359,9 +338,8 @@ nav {
 <body>
 
 <nav>
-  <div class="nav-logo" onclick="showPage('splash')">Shaneil Narsey</div>
+  <div class="nav-home" onclick="showPage('splash')">Home</div>
   <ul class="nav-links">
-    <li id="nav-splash" class="active" onclick="showPage('splash')">Home</li>
     <li id="nav-photography" onclick="showPage('photography')">Selected works</li>
     <li id="nav-about" onclick="showPage('about')">About</li>
     <li><a href="https://instagram.com/shaneiln" target="_blank">Instagram ↗</a></li>
@@ -379,7 +357,7 @@ nav {
     <span class="splash-enter" onclick="showPage('photography')">Selected works →</span>
   </div>
   <div class="splash-right">
-    <img src="cover-image.jpg" alt="Cover image">
+    <img src="cover-image.jpeg" alt="Cover image">
   </div>
 </div>
 
@@ -390,14 +368,13 @@ nav {
     <!-- HERO -->
     <div class="slide slide-hero">
       <div class="hero-label">Selected works</div>
-      <div class="hero-sub">Shaneil Narsey — Queenstown, New Zealand</div>
       <div class="scroll-nudge">
         <span>Scroll</span>
         <div class="scroll-nudge-line"></div>
       </div>
     </div>
 
-    <!-- 1 — dolomites01 landscape → right -->
+    <!-- 1 — dolomites01 landscape -->
     <div class="slide layout-right">
       <div class="slide-photo">
         <img src="dolomites01.jpg" alt="Dolomites landscape">
@@ -408,7 +385,7 @@ nav {
       </div>
     </div>
 
-    <!-- 2 — dolomites02 portrait → left -->
+    <!-- 2 — dolomites02 portrait -->
     <div class="slide layout-left">
       <div class="slide-photo">
         <img src="dolomites02.jpg" alt="Dolomites portrait">
@@ -419,7 +396,7 @@ nav {
       </div>
     </div>
 
-    <!-- 3 — botswana landscape → landscape layout -->
+    <!-- 3 — botswana landscape -->
     <div class="slide layout-landscape">
       <div class="slide-photo">
         <img src="botswana.jpg" alt="Chobe National Park Botswana">
@@ -430,7 +407,7 @@ nav {
       </div>
     </div>
 
-    <!-- 4 — flatiron portrait → centre-tall, caption right -->
+    <!-- 4 — flatiron portrait -->
     <div class="slide layout-centre-tall">
       <div class="slide-photo">
         <img src="flatiron.jpg" alt="Flatiron Building NYC">
@@ -441,7 +418,7 @@ nav {
       </div>
     </div>
 
-    <!-- 5 — nyc-skyline landscape → small-right -->
+    <!-- 5 — nyc-skyline landscape -->
     <div class="slide layout-small-right">
       <div class="slide-photo">
         <img src="nyc-skyline.jpg" alt="Manhattan NYC skyline">
@@ -452,7 +429,7 @@ nav {
       </div>
     </div>
 
-    <!-- 6 — muriwai landscape → right -->
+    <!-- 6 — muriwai landscape -->
     <div class="slide layout-right">
       <div class="slide-photo">
         <img src="muriwai.jpg" alt="Muriwai West Auckland Coast">
@@ -509,7 +486,6 @@ nav {
 
 <script>
 function showPage(id) {
-  // Hide splash separately since it's not a .page
   document.getElementById('splash').classList.remove('active');
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
@@ -518,10 +494,9 @@ function showPage(id) {
     document.getElementById('splash').classList.add('active');
   } else {
     document.getElementById(id).classList.add('active');
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
   }
-
-  const navEl = document.getElementById('nav-' + id);
-  if (navEl) navEl.classList.add('active');
 
   if (id === 'photography') {
     const sc = document.getElementById('scrollContainer');
