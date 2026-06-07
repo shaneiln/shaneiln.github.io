@@ -248,100 +248,68 @@ nav {
 
 /* ══════════════════════════════════════
    LAYOUT VARIANTS
-   All photo sizes use explicit px-safe
-   aspect ratios via width + aspect-ratio
+   Explicit width + height in vw units.
+   aspect-ratio is unreliable on
+   position:absolute — using vw math:
+   4:3  → h = w * 0.75
+   3:2  → h = w * 0.667
+   16:9 → h = w * 0.5625
 ══════════════════════════════════════ */
 
-/* LANDSCAPE — right side, 3:2 ratio */
+/* dolomites01 — LANDSCAPE 3:2, right */
 .layout-right .slide-photo {
-  right: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 54vw;
-  aspect-ratio: 3 / 2;
-  max-height: 70vh;
-  height: auto;
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 54vw; height: 36vw;
 }
 .layout-right .slide-caption { left: 8vw; bottom: 14vh; }
 
-/* PORTRAIT — left side, 4:3 ratio */
+/* dolomites02, amalfi — LANDSCAPE 4:3, left */
 .layout-left .slide-photo {
-  left: 10vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 52vw;
-  aspect-ratio: 4 / 3;
-  height: auto;
+  left: 10vw; top: 50%; transform: translateY(-50%);
+  width: 52vw; height: 39vw;
 }
 .layout-left .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 
-/* PORTRAIT centred — 9:16 */
+/* flatiron — LANDSCAPE 4:3, centred */
 .layout-centre-tall .slide-photo {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 56vw;
-  aspect-ratio: 4 / 3;
-  height: auto;
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 54vw; height: 40.5vw;
 }
 .layout-centre-tall .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 .layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
 
-/* LANDSCAPE standard — left offset, 16:9 ratio */
+/* botswana — LANDSCAPE 16:9, left */
 .layout-landscape .slide-photo {
-  left: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 62vw;
-  aspect-ratio: 16 / 9;
-  max-height: 65vh;
-  height: auto;
+  left: 8vw; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 34.875vw;
 }
 .layout-landscape .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 
-/* LANDSCAPE 16:9 — right offset */
+/* french-ridge — LANDSCAPE 16:9, right */
 .layout-landscape-right .slide-photo {
-  right: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 62vw;
-  aspect-ratio: 16 / 9;
-  max-height: 65vh;
-  height: auto;
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 34.875vw;
 }
 .layout-landscape-right .slide-caption { left: 8vw; bottom: 14vh; }
 
-/* LANDSCAPE 4:3 — left offset */
+/* kea — LANDSCAPE 4:3, left */
 .layout-landscape-43 .slide-photo {
-  left: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60vw;
-  aspect-ratio: 4 / 3;
-  height: auto;
+  left: 8vw; top: 50%; transform: translateY(-50%);
+  width: 60vw; height: 45vw;
 }
 .layout-landscape-43 .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
 
-/* LANDSCAPE 4:3 — right offset */
+/* muriwai — LANDSCAPE 4:3, right */
 .layout-landscape-43-right .slide-photo {
-  right: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60vw;
-  aspect-ratio: 4 / 3;
-  height: auto;
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 60vw; height: 45vw;
 }
 .layout-landscape-43-right .slide-caption { left: 8vw; bottom: 14vh; }
 
-/* LANDSCAPE small — right offset */
+/* nyc-skyline — LANDSCAPE 3:2 small, right */
 .layout-small-right .slide-photo {
-  right: 8vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48vw;
-  aspect-ratio: 3 / 2;
-  max-height: 58vh;
-  height: auto;
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 48vw; height: 32vw;
 }
 .layout-small-right .slide-caption { left: 8vw; bottom: 22vh; }
 
