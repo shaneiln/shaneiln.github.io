@@ -264,14 +264,14 @@ nav {
 }
 .layout-right .slide-caption { left: 8vw; bottom: 14vh; }
 
-/* PORTRAIT — left side, 9:16 ratio — EXPLICIT aspect-ratio */
+/* PORTRAIT — left side, 4:3 ratio */
 .layout-left .slide-photo {
   left: 10vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 34vw;
-  aspect-ratio: 9 / 16;
-  max-height: 82vh;
+  width: 46vw;
+  aspect-ratio: 4 / 3;
+  max-height: 78vh;
   height: auto;
 }
 .layout-left .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
@@ -281,9 +281,9 @@ nav {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 28vw;
-  aspect-ratio: 9 / 16;
-  max-height: 82vh;
+  width: 52vw;
+  aspect-ratio: 4 / 3;
+  max-height: 72vh;
   height: auto;
 }
 .layout-centre-tall .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
@@ -312,6 +312,30 @@ nav {
   height: auto;
 }
 .layout-landscape-right .slide-caption { left: 8vw; bottom: 14vh; }
+
+/* LANDSCAPE 4:3 — left offset */
+.layout-landscape-43 .slide-photo {
+  left: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 58vw;
+  aspect-ratio: 4 / 3;
+  max-height: 72vh;
+  height: auto;
+}
+.layout-landscape-43 .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+
+/* LANDSCAPE 4:3 — right offset */
+.layout-landscape-43-right .slide-photo {
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 58vw;
+  aspect-ratio: 4 / 3;
+  max-height: 72vh;
+  height: auto;
+}
+.layout-landscape-43-right .slide-caption { left: 8vw; bottom: 14vh; }
 
 /* LANDSCAPE small — right offset */
 .layout-small-right .slide-photo {
@@ -424,7 +448,7 @@ nav {
       </div>
     </div>
 
-    <!-- 2 dolomites02 — portrait 9:16 left -->
+    <!-- 2 dolomites02 — portrait 4:3 left -->
     <div class="slide layout-left">
       <div class="slide-photo"><img src="dolomites02.jpg" alt="Dolomites portrait"></div>
       <div class="slide-caption">
@@ -460,8 +484,8 @@ nav {
       </div>
     </div>
 
-    <!-- 6 muriwai — landscape right -->
-    <div class="slide layout-landscape-right">
+    <!-- 6 muriwai — 4:3 right -->
+    <div class="slide layout-landscape-43-right">
       <div class="slide-photo"><img src="muriwai.jpg" alt="Muriwai West Auckland Coast"></div>
       <div class="slide-caption">
         <div class="caption-title">West Auckland Coast</div>
@@ -469,8 +493,8 @@ nav {
       </div>
     </div>
 
-    <!-- 7 kea — landscape 16:9 -->
-    <div class="slide layout-landscape">
+    <!-- 7 kea — 4:3 left -->
+    <div class="slide layout-landscape-43">
       <div class="slide-photo"><img src="kea.jpeg" alt="Kea Mt Aspiring"></div>
       <div class="slide-caption">
         <div class="caption-title">Kea</div>
@@ -478,8 +502,8 @@ nav {
       </div>
     </div>
 
-    <!-- 8 amalfi — portrait 9:16 left -->
-    <div class="slide layout-left">
+    <!-- 8 amalfi — 4:3 left -->
+    <div class="slide layout-landscape-43">
       <div class="slide-photo"><img src="amalfi.jpeg" alt="Amalfi Coast"></div>
       <div class="slide-caption">
         <div class="caption-title">Amalfi Coast</div>
