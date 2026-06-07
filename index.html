@@ -328,26 +328,32 @@ nav {
   overflow: hidden;
 }
 
-/* Full-height image on the right ~60% of page */
+/* 4:3 landscape image, right side, with negative space */
 .about-image {
   position: absolute;
-  top: 0; right: 0;
-  width: 62%;
-  height: 100%;
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56vw;
+  height: 42vw; /* 4:3 ratio */
   overflow: hidden;
+  background: #e0ddd8;
 }
 .about-image img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.05);
+  animation: about-zoom 1.2s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+@keyframes about-zoom { to { transform: scale(1.0); } }
 
 /* Bio pinned bottom-left */
 .about-bio {
   position: absolute;
   bottom: 52px;
   left: 52px;
-  max-width: 300px;
+  max-width: 280px;
   z-index: 10;
 }
 .about-bio p {
@@ -382,8 +388,8 @@ nav {
   .layout-landscape .slide-caption { right: 4vw; bottom: 8vh; }
   .layout-small-right .slide-photo { width: 82vw; right: 4vw; }
   .layout-small-right .slide-caption { left: 4vw; bottom: 8vh; }
-  .about-image { width: 100%; height: 55%; top: auto; bottom: 0; }
-  .about-bio { bottom: auto; top: 88px; left: 24px; max-width: 260px; }
+  .about-image { width: 88vw; height: 66vw; right: 4vw; top: auto; transform: none; bottom: 28vh; }
+  .about-bio { bottom: 28px; left: 24px; max-width: 260px; }
 }
 
 </style>
