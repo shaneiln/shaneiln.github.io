@@ -1,0 +1,33 @@
+:root{--ink:#1b2142;--paper:#f8f6f2;--accent:#e0a030;--accent-deep:#8f5600;--muted:#5a5f7d;--line:#d9d5cc}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;font-family:"Jost",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.1;margin:0}
+a{color:var(--accent-deep)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+/* splash */
+.splash{min-height:100vh;min-height:100dvh;display:grid;place-items:center;text-align:center;padding:2rem;background:var(--ink);color:#fff}
+.splash h1{font-size:clamp(3.2rem,12vw,8rem);letter-spacing:.01em;animation:rise 1.4s ease-out both}
+.splash .amp{display:block;font-size:.45em;color:var(--accent);margin:.1em 0}
+.splash p{margin:1.6rem 0 0;font-size:clamp(1.05rem,2.5vw,1.3rem)}
+.splash .date{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.5rem,4vw,2.2rem)}
+.nav{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
+.btn{display:inline-block;padding:.8rem 1.6rem;border:1.5px solid var(--accent);color:#fff;text-decoration:none;border-radius:2px;font:inherit;background:none;cursor:pointer}
+.btn.solid{background:var(--accent);color:var(--ink);font-weight:500}
+.btn:hover{background:var(--accent);color:var(--ink)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.splash h1{animation:none}}
+/* inner pages */
+.page{max-width:40rem;margin:0 auto;padding:3rem 1.5rem 5rem}
+.page header{margin-bottom:2.5rem;border-bottom:2px solid var(--accent);padding-bottom:1.2rem}
+.page h1{font-size:clamp(2.4rem,7vw,3.6rem)}
+.page h2{font-size:1.8rem;margin:2.4rem 0 .6rem}
+.page .back{font-size:.95rem}
+.todo{background:#fff3d6;padding:0 .3em}
+label{display:block;margin-top:1.2rem;font-weight:500}
+input,select,textarea{width:100%;padding:.7rem;margin-top:.35rem;font:inherit;border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--ink)}
+textarea{min-height:6rem}
+.gate{max-width:24rem;margin:3rem auto 0}
+.msg{margin-top:1rem;min-height:1.5em}
+.page .btn{color:var(--ink);background:var(--accent);margin-top:1.6rem;border:0}

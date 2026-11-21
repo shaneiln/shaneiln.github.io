@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Guest details · Marta &amp; Shaneil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body><div class="page">
+<header><a class="back" href="../">Back</a><h1>Guest details</h1></header>
+
+<form id="gate" class="gate">
+<label for="pw">Enter the password from your invitation</label>
+<input id="pw" type="password" autocomplete="off" required>
+<button class="btn" type="submit">View details</button>
+<p id="msg" class="msg" role="alert"></p>
+</form>
+
+<main id="content" hidden>
+<h2>When and where</h2>
+<p>Saturday 11 December 2027<br><span class="todo">Venue name and address TBC</span><br><span class="todo">Ceremony start time TBC</span></p>
+
+<h2>Schedule</h2>
+<p><span class="todo">Guests arrive – TBC</span><br>
+<span class="todo">Ceremony – TBC</span><br>
+<span class="todo">Dinner and celebration – TBC</span><br>
+<span class="todo">Finish – TBC</span></p>
+
+<h2>Getting there</h2>
+<p><span class="todo">Parking, transport and directions TBC</span></p>
+
+<h2>Where to stay</h2>
+<p><span class="todo">Suggested accommodation TBC</span></p>
+
+<h2>What to wear</h2>
+<p><span class="todo">Dress guidance TBC</span></p>
+
+<h2>Questions</h2>
+<p>Contact <span class="todo">name and email or phone TBC</span>.</p>
+<p><a href="../rsvp/">RSVP here</a></p>
+</main>
+</div>
+<script>
+// To change the password: see README.md. This stores a SHA-256 hash, not the password itself.
+const HASH="c235ad4fe87763693e55f19f92db6ec6a11acf8d6fffa0ea0a45d7e1e8ae477f";
+const gate=document.getElementById("gate"),content=document.getElementById("content"),msg=document.getElementById("msg");
+async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function unlock(){gate.hidden=true;content.hidden=false;try{sessionStorage.setItem("wedding-ok",HASH)}catch(e){}}
+try{if(sessionStorage.getItem("wedding-ok")===HASH)unlock()}catch(e){}
+gate.addEventListener("submit",async e=>{e.preventDefault();
+ const h=await sha(document.getElementById("pw").value.trim());
+ if(h===HASH)unlock();else msg.textContent="That password isn’t right. Check your invitation and try again."});
+</script></body></html>
