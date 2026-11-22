@@ -1,13 +1,11 @@
-/* Fonts: "Wasted Vindey" (all text) and "A Day Without Sun" (names) are loaded from /fonts - see fonts/README.txt.
-   Georgia / Antonio are fallbacks if a font file is missing. */
-@font-face{font-family:"WastedVindey";font-display:swap;
-  src:url("fonts/wasted-vindey.regular.ttf") format("truetype"),url("fonts/wasted-vindey.regular.otf") format("opentype"),url("fonts/WastedVindey.ttf") format("truetype"),url("fonts/WastedVindey.otf") format("opentype")}
+/* Fonts: Cormorant Garamond (Google Fonts, linked in each page) for all text.
+   Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
 @font-face{font-family:"ADayWithoutSun";font-display:swap;
   src:url("fonts/ADayWithoutSun.woff2") format("woff2"),url("fonts/ADayWithoutSun.ttf") format("truetype")}
 :root{--gap:clamp(1.6rem,6vh,3.4rem);--bg:#FFF6EF;--ink:#74323E;--line:rgba(116,50,62,.4);--hl:rgba(116,50,62,.12)}
 *{box-sizing:border-box}
-body{margin:0;font-synthesis:none;font-family:"WastedVindey",Georgia,serif;font-size:1.1rem;color:var(--ink);background:var(--bg);line-height:1.7}
-h1,h2{margin:0;font-weight:400;line-height:1.15}
+body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
+h1,h2{margin:0;font-weight:600;line-height:1.15}
 a{color:var(--ink)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 [hidden]{display:none!important}
@@ -16,29 +14,27 @@ a{color:var(--ink)}
 
 /* splash */
 html{scroll-behavior:smooth}
-.hero{position:relative;display:grid;place-items:center;min-height:100vh;min-height:100dvh;padding:2rem 1rem 5rem}
-.hero-inner{display:grid;gap:var(--gap);justify-items:center;text-align:center}
-.date{margin:0;font-size:clamp(1.1rem,3vw,1.7rem);letter-spacing:.28em;line-height:1}
+.hero{display:flex;flex-direction:column;align-items:center;min-height:100vh;min-height:100dvh;padding:clamp(1.5rem,5vh,3rem) 1rem 0;overflow:hidden}
+.hero-inner{flex:1;display:grid;align-content:center;gap:var(--gap);justify-items:center;text-align:center}
+.date{margin:0;font-size:clamp(1.2rem,3.2vw,1.8rem);letter-spacing:.28em;line-height:1}
 .names{display:flex;align-items:center;justify-content:center;margin:0;font-family:"ADayWithoutSun","Antonio",sans-serif;font-weight:200;font-size:clamp(2.6rem,9.5vw,7rem);text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;line-height:1}
-.names .amp{font-family:"WastedVindey",Georgia,serif;font-weight:400;font-size:.5em;margin:0 .6em;letter-spacing:0;line-height:1}
-.tag{margin:0;max-width:22em;font-size:clamp(1rem,2.6vw,1.4rem);letter-spacing:.12em;line-height:1.5}
-.arrow{position:absolute;left:0;right:0;bottom:clamp(1.2rem,4vh,2.5rem);display:flex;justify-content:center}
-.arrow a{display:block;padding:.6rem;border-radius:999px}
+.names .amp{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:.5em;margin:0 .6em;letter-spacing:0;line-height:1}
+.tag{margin:0;max-width:22em;font-size:clamp(1.1rem,2.8vw,1.5rem);letter-spacing:.12em;line-height:1.5}
+.arrow a{display:block;padding:.4rem .6rem .7rem;border-radius:999px}
 .arrow svg{display:block;width:26px;height:26px;fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;animation:bob 2.2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.info{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow:hidden}
-.info .top{padding:clamp(3rem,14vh,8rem) 1.25rem 2rem;text-align:center}
-.art{margin-top:auto;align-self:flex-end;height:min(46vh,460px);width:auto;max-width:80vw;object-fit:contain;object-position:right bottom;pointer-events:none}
-/* short fades: top block on load, the rest as you scroll to it */
+.art{display:block;height:min(34vh,340px);width:auto;max-width:70vw;object-fit:contain;object-position:center bottom;pointer-events:none}
+.info{display:grid;place-items:center;min-height:60vh;min-height:60dvh;padding:2rem 1rem}
+/* short fades: top block on load, the button as you scroll to it */
 @keyframes in{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
 .date{animation:in .8s ease-out both}
 .names{animation:in 1.2s ease-out .1s both}
 .tag{animation:in .8s ease-out .7s both}
-.arrow{animation:in .8s ease-out 1.1s both}
+.art{animation:in 1s ease-out .9s both}
+.arrow{animation:in .8s ease-out 1.2s both}
 .js .reveal{opacity:0;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease}
 .js .reveal.show{opacity:1;transform:none}
-.js .art.reveal{transition-delay:.3s}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.date,.names,.tag,.arrow,.arrow svg{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.date,.names,.tag,.art,.arrow,.arrow svg{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
 
 /* inner pages */
 .page{max-width:40rem;margin:0 auto;padding:3rem 1.5rem 5rem}
@@ -48,9 +44,13 @@ html{scroll-behavior:smooth}
 .page .back{font-size:.95rem}
 .page p{margin:.4rem 0}
 .todo{background:var(--hl);padding:0 .3em}
-label{display:block;margin-top:1.2rem;font-weight:400}
+label{display:block;margin-top:1.2rem;font-weight:600}
 input,select,textarea{width:100%;padding:.7rem;margin-top:.35rem;font:inherit;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink)}
 textarea{min-height:6rem}
 .gate{max-width:24rem;margin:3rem auto 0}
 .msg{margin-top:1rem;min-height:1.5em}
 .page .btn{margin-top:1.6rem}
+
+/* centred layout (guest details page) */
+.page.center{text-align:center}
+.page.center input{text-align:center}

@@ -4,8 +4,8 @@
 <meta name="description" content="Marta and Shaneil are getting married. Saturday 11 December 2027, Auckland.">
 <meta name="theme-color" content="#FFF6EF">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Antonio:wght@200&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4"></head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Antonio:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5"></head>
 <body>
 <header class="hero">
 <div class="hero-inner">
@@ -15,10 +15,10 @@
 </div>
 <div class="arrow"><a href="#info" aria-label="Scroll down">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a></div>
+<img class="art" src="images/artwork.webp" alt="" width="876" height="1300">
 </header>
 <main id="info" class="info">
-<div class="top"><a class="btn reveal" href="details/">RSVP and details</a></div>
-<img class="art reveal" src="images/artwork.webp" alt="" width="876" height="1300">
+<a class="btn reveal" href="details/">RSVP and details</a>
 </main>
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.2});
