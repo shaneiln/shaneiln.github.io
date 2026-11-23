@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1149.22 1021.89">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1149.22 1021.89" aria-hidden="true" focusable="false">
   <defs>
     <style>
       .cls-1{fill:#CDB2B3}
@@ -7,16 +7,16 @@
       .cls-3{fill:#D6BEBF}
       .cls-4{fill:#74323E}
       .cls-5{fill:#EDDFDD}
-      .cls-6{fill:#F6EDEA}
+      .cls-6{fill:#FFF9F5}
       .cls-7{fill:#D4BCBD}
       .cls-8{fill:#EFE2DF}
-      .cls-9{fill:#FBF3F0}
+      .cls-9{fill:#FFF9F5}
       .cls-10{fill:#E0CDCC}
       .cls-11{fill:#A5787E}
       .cls-12{fill:#B69195}
       .cls-13{fill:#74323E}
       .cls-14{fill:#E1CECE}
-      .cls-15{fill:#FEF7F3}
+      .cls-15{fill:#FFF9F5}
       .cls-16{fill:#B38D91}
       .cls-17{fill:#E2D0CF}
       .cls-18{fill:#A67A80}
@@ -26,13 +26,13 @@
       .cls-22{fill:#E6D6D4}
       .cls-23{fill:#C4A5A8}
       .cls-24{fill:#DBC6C6}
-      .cls-25{fill:#F9F1EE}
+      .cls-25{fill:#FFF9F5}
       .cls-26{fill:#DAC3C4}
       .cls-27{fill:#74323E}
       .cls-28{fill:#C6A7AA}
       .cls-29{fill:#FFF9F5}
-      .cls-30{fill:#FAF2EE}
-      .cls-31{fill:#F7EEEB}
+      .cls-30{fill:#FFF9F5}
+      .cls-31{fill:#FFF9F5}
       .cls-32{fill:#AE858A}
       .cls-33{fill:#74323E}
       .cls-34{fill:#F4E9E6}
@@ -42,10 +42,10 @@
       .cls-38{fill:#D0B6B7}
       .cls-39{fill:#F6EBE9}
       .cls-40{fill:#F0E4E1}
-      .cls-41{fill:#FDF6F2}
+      .cls-41{fill:#FFF9F5}
       .cls-42{fill:#9A686F}
       .cls-43{fill:#74323E}
-      .cls-44{fill:#FAF2EF}
+      .cls-44{fill:#FFF9F5}
       .cls-45{fill:#F5EBE8}
       .cls-46{fill:#E9D9D8}
       .cls-47{fill:#74323E}
@@ -56,11 +56,11 @@
       .cls-52{fill:#EDDFDD}
       .cls-53{fill:#97636B}
       .cls-54{fill:#E5D4D3}
-      .cls-55{fill:#F9F0ED}
+      .cls-55{fill:#FFF9F5}
       .cls-56{fill:#F4E9E6}
       .cls-57{fill:#EDE0DE}
       .cls-58{fill:#F2E7E4}
-      .cls-59{fill:#F6EDEA}
+      .cls-59{fill:#FFF9F5}
       .cls-60{fill:#CDB1B3}
       .cls-61{fill:#824651}
       .cls-62{fill:#793844}
@@ -94,9 +94,9 @@
       .cls-90{fill:#FFF9F5}
       .cls-91{fill:#783743}
       .cls-92{fill:#EFE3E1}
-      .cls-93{fill:#FEF8F4}
+      .cls-93{fill:#FFF9F5}
       .cls-94{fill:#EDDFDD}
-      .cls-95{fill:#FAF2EF}
+      .cls-95{fill:#FFF9F5}
       .cls-96{fill:#EEE0DE}
       .cls-97{fill:#FFF9F5}
       .cls-98{fill:#E9DAD8}
@@ -106,31 +106,31 @@
       .cls-102{fill:#F1E5E3}
       .cls-103{fill:#DCC6C7}
       .cls-104{fill:#F2E6E4}
-      .cls-105{fill:#F8F0EC}
+      .cls-105{fill:#FFF9F5}
       .cls-106{fill:#F2E7E4}
-      .cls-107{fill:#FBF3F0}
-      .cls-108{fill:#FBF3F0}
-      .cls-109{fill:#FFF8F4}
+      .cls-107{fill:#FFF9F5}
+      .cls-108{fill:#FFF9F5}
+      .cls-109{fill:#FFF9F5}
       .cls-110{fill:#DFCBCB}
       .cls-111{fill:#EFE3E0}
-      .cls-112{fill:#FDF7F3}
-      .cls-113{fill:#FAF1EE}
+      .cls-112{fill:#FFF9F5}
+      .cls-113{fill:#FFF9F5}
       .cls-114{fill:#DBC5C5}
-      .cls-115{fill:#FDF6F3}
+      .cls-115{fill:#FFF9F5}
       .cls-116{fill:#CEB3B5}
       .cls-117{fill:#9F7077}
-      .cls-118{fill:#FAF1EE}
+      .cls-118{fill:#FFF9F5}
       .cls-119{fill:#DFCACA}
       .cls-120{fill:#EDDFDD}
       .cls-121{fill:#DCC7C7}
       .cls-122{fill:#E8D8D6}
       .cls-123{fill:#7E414B}
       .cls-124{fill:#DAC4C4}
-      .cls-125{fill:#F9F1EE}
+      .cls-125{fill:#FFF9F5}
       .cls-126{fill:#D9C3C3}
       .cls-127{fill:#D0B6B7}
       .cls-128{fill:#CCB1B2}
-      .cls-129{fill:#F8EFEC}
+      .cls-129{fill:#FFF9F5}
       .cls-130{fill:#956169}
       .cls-131{fill:#D3B9BA}
       .cls-132{fill:#9F6F76}
@@ -143,8 +143,8 @@
       .cls-139{fill:#EEE0DE}
       .cls-140{fill:#E1CFCE}
       .cls-141{fill:#EADBD9}
-      .cls-142{fill:#FBF4F0}
-      .cls-143{fill:#FDF6F2}
+      .cls-142{fill:#FFF9F5}
+      .cls-143{fill:#FFF9F5}
       .cls-144{fill:#D2B9BA}
       .cls-145{fill:#925D66}
       .cls-146{fill:#F1E5E3}
@@ -155,17 +155,17 @@
       .cls-151{fill:#FFF9F5}
       .cls-152{fill:#7C3E49}
       .cls-153{fill:#74323E}
-      .cls-154{fill:#F8EFEC}
+      .cls-154{fill:#FFF9F5}
       .cls-155{fill:#C5A6A9}
-      .cls-156{fill:#F7EDEA}
+      .cls-156{fill:#FFF9F5}
       .cls-157{fill:#E6D5D4}
       .cls-158{fill:#D5BDBE}
       .cls-159{fill:#C9ACAE}
       .cls-160{fill:#FFF9F5}
       .cls-161{fill:#D5BDBD}
-      .cls-162{fill:#F7EEEB}
+      .cls-162{fill:#FFF9F5}
       .cls-163{fill:#C3A2A5}
-      .cls-164{fill:#F7EEEB}
+      .cls-164{fill:#FFF9F5}
       .cls-165{fill:#F6ECE9}
       .cls-166{fill:#E1CDCD}
       .cls-167{fill:#D0B6B8}
@@ -174,12 +174,12 @@
       .cls-170{fill:#EDDFDD}
       .cls-171{fill:#DAC3C4}
       .cls-172{fill:#EFE2E0}
-      .cls-173{fill:#FBF4F0}
+      .cls-173{fill:#FFF9F5}
       .cls-174{fill:#F0E4E2}
-      .cls-175{fill:#FCF5F1}
+      .cls-175{fill:#FFF9F5}
       .cls-176{fill:#CCB0B2}
-      .cls-177{fill:#FCF5F1}
-      .cls-178{fill:#FEF8F4}
+      .cls-177{fill:#FFF9F5}
+      .cls-178{fill:#FFF9F5}
       .cls-179{fill:#F2E6E4}
       .cls-180{fill:#F3E7E5}
       .cls-181{fill:#BF9EA1}
@@ -189,16 +189,16 @@
       .cls-185{fill:#F2E6E4}
       .cls-186{fill:#74323E}
       .cls-187{fill:#D1B7B9}
-      .cls-188{fill:#F7EDEA}
+      .cls-188{fill:#FFF9F5}
       .cls-189{fill:#FFF9F5}
       .cls-190{fill:#74323E}
-      .cls-191{fill:#FBF4F0}
+      .cls-191{fill:#FFF9F5}
       .cls-192{fill:#D5BEBE}
       .cls-193{fill:#D5BDBE}
       .cls-194{fill:#FFF9F5}
       .cls-195{fill:#D2B8BA}
       .cls-196{fill:#F4E9E6}
-      .cls-197{fill:#F7EDEA}
+      .cls-197{fill:#FFF9F5}
       .cls-198{fill:#CAADAF}
       .cls-199{fill:#E4D2D1}
       .cls-200{fill:#FFF9F5}
@@ -208,7 +208,7 @@
       .cls-204{fill:#74323E}
       .cls-205{fill:#D5BDBE}
       .cls-206{fill:#F5EBE8}
-      .cls-207{fill:#FEF7F3}
+      .cls-207{fill:#FFF9F5}
       .cls-208{fill:#FFF9F5}
       .cls-209{fill:#BB989B}
       .cls-210{fill:#B89397}
@@ -217,25 +217,25 @@
       .cls-213{fill:#F0E4E2}
       .cls-214{fill:#FFF9F5}
       .cls-215{fill:#EADBDA}
-      .cls-216{fill:#FCF4F1}
+      .cls-216{fill:#FFF9F5}
       .cls-217{fill:#EDDFDD}
       .cls-218{fill:#EBDDDB}
       .cls-219{fill:#FFF9F5}
-      .cls-220{fill:#FDF6F3}
+      .cls-220{fill:#FFF9F5}
       .cls-221{fill:#F1E5E2}
       .cls-222{fill:#C1A1A4}
       .cls-223{fill:#DBC6C6}
       .cls-224{fill:#DFCBCB}
       .cls-225{fill:#FFF9F5}
       .cls-226{fill:#74323E}
-      .cls-227{fill:#F7EDEA}
+      .cls-227{fill:#FFF9F5}
       .cls-228{fill:#D6BEBF}
-      .cls-229{fill:#FBF3F0}
+      .cls-229{fill:#FFF9F5}
       .cls-230{fill:#F3E8E5}
       .cls-231{fill:#C5A5A8}
       .cls-232{fill:#F6ECE9}
       .cls-233{fill:#B79296}
-      .cls-234{fill:#F9F0ED}
+      .cls-234{fill:#FFF9F5}
       .cls-235{fill:#F6ECE9}
     </style>
   </defs>
