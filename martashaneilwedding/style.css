@@ -88,3 +88,5 @@ textarea{min-height:6rem}
 .where .lead:first-of-type{margin-top:0}
 
 .tl-art{display:block;margin:0 auto .8rem;width:min(100%,230px);height:auto}
+.tl-art.tall{width:min(70%,150px)}
+.venue-art{display:block;margin:0 auto 1.6rem;width:min(100%,480px);height:auto}
