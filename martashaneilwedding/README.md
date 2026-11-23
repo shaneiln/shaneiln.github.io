@@ -5,7 +5,7 @@
 2. **Change the password** (starter password is `ChangeMe2027`):
    - Open any page in your browser, press F12, open the Console, and run:
      `crypto.subtle.digest("SHA-256",new TextEncoder().encode("YOURPASSWORD")).then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")))`
-   - Paste the result over the long hash after `const HASH=` in `details/index.html`.
+   - Paste the result over the long hash after `const HASH=` in `details/password.js`.
 3. **RSVP form:** create a free form at formspree.io, then replace `YOUR_FORM_ID` in `rsvp/index.html` with your form ID.
 4. Replace every highlighted TBC (class `todo`) in `details/index.html` and `rsvp/index.html`.
 5. **Names font:** add `ADayWithoutSun.ttf` (or `.woff2`) to the `fonts` folder - see `fonts/README.txt`. Other text uses Cormorant Garamond (Google Fonts, automatic).
