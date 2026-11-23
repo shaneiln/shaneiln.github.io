@@ -86,3 +86,5 @@ textarea{min-height:6rem}
 .where p{margin:.2rem 0}
 .where .lead{margin-top:1.4rem}
 .where .lead:first-of-type{margin-top:0}
+
+.tl-art{display:block;margin:0 auto .8rem;width:min(100%,230px);height:auto}
