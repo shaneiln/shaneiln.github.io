@@ -1,7 +1,7 @@
 /* Fonts: Cormorant Garamond (Google Fonts, linked in each page) for all text.
    Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
-@font-face{font-family:"ADayWithoutSun";font-display:swap;
-  src:url("fonts/ADayWithoutSun.woff2") format("woff2"),url("fonts/ADayWithoutSun.ttf") format("truetype")}
+@font-face{font-family:"ADayWithoutSun";font-display:block;
+  src:url("fonts/ADayWithoutSun.ttf") format("truetype"),url("fonts/ADayWithoutSun.woff2") format("woff2")}
 :root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--bg:#FFF6EF;--ink:#74323E;--line:rgba(116,50,62,.4);--hl:rgba(116,50,62,.12)}
 *{box-sizing:border-box}
 body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
@@ -40,10 +40,10 @@ html{scroll-behavior:smooth}
 .page{max-width:40rem;margin:0 auto;padding:3rem 1.5rem 5rem}
 .page header{margin-bottom:2.5rem;border-bottom:1.5px solid var(--ink);padding-bottom:1.2rem}
 .page h1,.page h2,.page h3{font-family:var(--head);font-weight:200;text-transform:uppercase;line-height:1.1}
-.page h1{font-size:clamp(2rem,7vw,3rem);letter-spacing:.06em;margin-top:.6rem}
-.page h1.names{font-size:clamp(2.2rem,8.5vw,3.8rem);letter-spacing:.04em;margin-top:.8rem;animation:none}
+.page h1{font-size:clamp(2.4rem,8vw,3.6rem);letter-spacing:.06em;margin-top:.6rem}
+.page h1.names{font-size:clamp(2.4rem,9.5vw,4.2rem);letter-spacing:.04em;margin-top:.8rem;animation:none}
 .page .tag{animation:none;margin:1rem auto 0;font-size:clamp(1.1rem,3.4vw,1.4rem)}
-.page h2{font-size:clamp(1.8rem,5.5vw,2.4rem);letter-spacing:.06em;margin:3rem 0 .8rem}
+.page h2{font-size:clamp(2.3rem,7.5vw,3.1rem);letter-spacing:.06em;margin:3rem 0 .8rem}
 .page .back{font-size:.95rem}
 .page p{margin:.4rem 0}
 .todo{background:var(--hl);padding:0 .3em}
@@ -74,7 +74,7 @@ textarea{min-height:6rem}
 .tl-mid::after{content:"";position:absolute;left:50%;top:var(--dot);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ink)}
 .tl-item:first-child .tl-mid::before{top:calc(var(--dot) + 7px)}
 .tl-item:last-child .tl-mid::before{bottom:auto;height:calc(var(--dot) + 7px)}
-.timeline h3{margin:0 0 .4rem;font-size:1.7rem;letter-spacing:.06em}
+.timeline h3{margin:0 0 .4rem;font-size:2.1rem;line-height:1.05;letter-spacing:.06em}
 .timeline p{margin:.1rem 0}
 .timeline .time{font-weight:600;letter-spacing:.12em}
 .js .tl-item .tl-mid{opacity:0;transition:opacity .6s ease}
@@ -82,3 +82,7 @@ textarea{min-height:6rem}
 .js .tl-item.show .tl-mid{opacity:1}
 .js .tl-item.show .tl-side,.js .tl-item.show .tl-pic{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .tl-item .tl-mid,.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:1;transform:none;transition:none}}
+
+.where p{margin:.2rem 0}
+.where .lead{margin-top:1.4rem}
+.where .lead:first-of-type{margin-top:0}
