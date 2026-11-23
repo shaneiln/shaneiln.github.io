@@ -2,7 +2,7 @@
    Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
 @font-face{font-family:"ADayWithoutSun";font-display:block;
   src:url("fonts/ADayWithoutSun.ttf") format("truetype"),url("fonts/ADayWithoutSun.woff2") format("woff2")}
-:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--bg:#FFF6EF;--ink:#74323E;--line:rgba(116,50,62,.4);--hl:rgba(116,50,62,.12)}
+:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--bg:#FFF9F5;--ink:#74323E;--line:rgba(116,50,62,.4);--hl:rgba(116,50,62,.12)}
 *{box-sizing:border-box}
 body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
 h1,h2{margin:0;font-weight:600;line-height:1.15}
