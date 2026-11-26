@@ -2,7 +2,7 @@
    Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
 @font-face{font-family:"ADayWithoutSun";font-display:block;
   src:url("fonts/ADayWithoutSun.ttf") format("truetype"),url("fonts/ADayWithoutSun.woff2") format("woff2")}
-:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--cream:#FBF5E6;--text:#5C1F14;--red:#C22E1A;--gold:#F0AC1B;--cream-soft:#F3EAD3;--bg:var(--cream);--ink:var(--text);--line:rgba(92,31,20,.4);--hl:rgba(92,31,20,.12)}
+:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--cream:#FBF5E6;--text:#5C1F14;--red:#C22E1A;--gold:#F0AC1B;--bg:var(--cream);--ink:var(--text);--line:rgba(92,31,20,.4);--hl:rgba(92,31,20,.12)}
 *{box-sizing:border-box}
 body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
 h1,h2{margin:0;font-weight:600;line-height:1.15}
@@ -71,7 +71,7 @@ textarea{min-height:6rem}
 .tl-item:nth-child(even) .tl-pic{grid-column:1}
 .tl-pic img{display:block;margin:0 auto;width:min(120px,80%);height:auto}
 .tl-mid{grid-row:1;grid-column:2;align-self:stretch;position:relative}
-.tl-mid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--ink)}
+.tl-mid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:0;margin-left:-1.5px;border-left:3px dotted var(--gold)}
 .tl-mid::after{content:"";position:absolute;left:50%;top:var(--dot);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--gold)}
 .tl-item:first-child .tl-mid::before{top:calc(var(--dot) + 7px)}
 .tl-item:last-child .tl-mid::before{bottom:auto;height:calc(var(--dot) + 7px)}
@@ -96,12 +96,11 @@ textarea{min-height:6rem}
 .faq{margin:1.2rem 0 0;text-align:left}
 .faq details{border-bottom:1px solid var(--line)}
 .faq details:first-child{border-top:1px solid var(--line)}
-.faq details[open]{background:var(--cream-soft)}
-.faq summary{list-style:none;cursor:pointer;position:relative;padding:1rem 2.6rem 1rem .8rem;font-weight:600;font-size:1.3rem;line-height:1.3}
+.faq summary{list-style:none;cursor:pointer;position:relative;padding:1rem 2.6rem 1rem .2rem;font-weight:600;font-size:1.3rem;line-height:1.3}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:1.7rem;letter-spacing:0}
+.faq summary::after{content:"+";position:absolute;right:.3rem;top:50%;transform:translateY(-50%);font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:1.7rem;letter-spacing:0}
 .faq details[open] summary::after{content:"\2013"}
-.faq .answer{padding:0 .8rem 1.4rem}
+.faq .answer{padding:0 .2rem 1.4rem}
 .faq .answer p{margin:.5rem 0}
 .faq ol{list-style:decimal;padding-left:1.6rem;margin:.9rem 0}
 .faq li{margin:.45rem 0}
