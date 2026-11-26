@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Marta &amp; Shaneil</title>
+<meta name="description" content="Marta and Shaneil are getting married. Saturday 11 December 2027, Auckland.">
+<meta name="theme-color" content="#FBF5E6">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preload" href="fonts/ADayWithoutSun.ttf" as="font" type="font/ttf" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Antonio:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=11"></head>
+<body>
+<header class="hero">
+<div class="hero-inner">
+<p class="date">&ndash; 11.12.2027 &ndash;</p>
+<h1 class="names">Marta<span class="amp">&amp;</span>Shaneil</h1>
+<p class="tag">Invite you to celebrate their wedding</p>
+</div>
+<div class="arrow"><a href="#info" aria-label="Scroll down">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a></div>
+</header>
+<main id="info" class="info">
+<a class="btn reveal" href="details/">RSVP and details</a>
+</main>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body></html>
