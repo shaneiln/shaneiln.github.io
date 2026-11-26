@@ -1,0 +1,107 @@
+/* Fonts: Cormorant Garamond (Google Fonts, linked in each page) for all text.
+   Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
+@font-face{font-family:"ADayWithoutSun";font-display:block;
+  src:url("fonts/ADayWithoutSun.ttf") format("truetype"),url("fonts/ADayWithoutSun.woff2") format("woff2")}
+:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--cream:#FBF5E6;--text:#5C1F14;--red:#C22E1A;--gold:#F0AC1B;--cream-soft:#F3EAD3;--bg:var(--cream);--ink:var(--text);--line:rgba(92,31,20,.4);--hl:rgba(92,31,20,.12)}
+*{box-sizing:border-box}
+body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
+h1,h2{margin:0;font-weight:600;line-height:1.15}
+a{color:var(--red)}
+a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+[hidden]{display:none!important}
+.btn{display:inline-block;padding:.75rem 2.2rem;border:0;border-radius:999px;background:var(--red);color:var(--bg);text-decoration:none;font:inherit;letter-spacing:.06em;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+
+/* splash */
+html{scroll-behavior:smooth}
+.hero{display:flex;flex-direction:column;align-items:center;min-height:100vh;min-height:100dvh;padding:clamp(1.5rem,5vh,3rem) 1rem clamp(1.5rem,5vh,3rem);overflow:hidden}
+.hero-inner{flex:1;display:grid;align-content:center;gap:var(--gap);justify-items:center;text-align:center}
+.date{margin:0;font-size:clamp(1.2rem,3.2vw,1.8rem);letter-spacing:.28em;line-height:1}
+.names{display:flex;align-items:center;justify-content:center;margin:0;font-family:"ADayWithoutSun","Antonio",sans-serif;font-weight:200;font-size:clamp(2.6rem,9.5vw,7rem);text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;line-height:1}
+.names .amp{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:.5em;margin:0 .6em;letter-spacing:0;line-height:1}
+.tag{margin:0;max-width:22em;font-size:clamp(1.1rem,2.8vw,1.5rem);letter-spacing:.12em;line-height:1.5}
+.arrow a{display:block;padding:.4rem .6rem .7rem;border-radius:999px}
+.arrow svg{display:block;width:26px;height:26px;fill:none;stroke:var(--red);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.art{display:block;height:min(34vh,340px);width:auto;max-width:70vw;object-fit:contain;object-position:center bottom;pointer-events:none}
+.info{display:grid;place-items:center;min-height:60vh;min-height:60dvh;padding:2rem 1rem}
+/* short fades: top block on load, the button as you scroll to it */
+@keyframes in{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.date{animation:in .8s ease-out both}
+.names{animation:in 1.2s ease-out .1s both}
+.tag{animation:in .8s ease-out .7s both}
+.art{animation:in 1s ease-out .9s both}
+.arrow{animation:in .8s ease-out 1.2s both}
+.js .reveal{opacity:0;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.show{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.date,.names,.tag,.art,.arrow,.arrow svg{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* inner pages */
+.page{max-width:40rem;margin:0 auto;padding:3rem 1.5rem 5rem}
+.page header{margin-bottom:2.5rem;border-bottom:1.5px solid var(--ink);padding-bottom:1.2rem}
+.page h1,.page h2,.page h3{font-family:var(--head);font-weight:200;text-transform:uppercase;line-height:1.1}
+.page h1{font-size:clamp(2.4rem,8vw,3.6rem);letter-spacing:.06em;margin-top:.6rem}
+.page h1.names{font-size:clamp(2.4rem,9.5vw,4.2rem);letter-spacing:.04em;margin-top:.8rem;animation:none}
+.page .tag{animation:none;margin:1rem auto 0;font-size:clamp(1.1rem,3.4vw,1.4rem)}
+.page h2{font-size:clamp(2.3rem,7.5vw,3.1rem);letter-spacing:.06em;margin:3rem 0 .8rem}
+.page .back{font-size:.95rem}
+.page p{margin:.4rem 0}
+.todo{background:var(--hl);padding:0 .3em}
+label{display:block;margin-top:1.2rem;font-weight:600}
+input,select,textarea{width:100%;padding:.7rem;margin-top:.35rem;font:inherit;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink)}
+textarea{min-height:6rem}
+.gate{max-width:24rem;margin:3rem auto 0}
+.msg{margin-top:1rem;min-height:1.5em}
+.page .btn{margin-top:1.6rem}
+
+/* centred layout (guest details page) */
+.page.center{text-align:center}
+.page.center input{text-align:center}
+
+/* schedule timeline: dots and details alternate either side of a centre line */
+.intro{margin-top:1.5rem}
+.timeline{--dot:.6rem;list-style:none;margin:2rem 0 0;padding:0}
+.tl-item{display:grid;grid-template-columns:1fr 20px 1fr;align-items:start}
+.tl-side,.tl-pic{grid-row:1;padding:0 .9rem 2.8rem}
+.tl-item:last-child .tl-side,.tl-item:last-child .tl-pic{padding-bottom:0}
+.tl-side{grid-column:1}
+.tl-pic{grid-column:3}
+.tl-item:nth-child(even) .tl-side{grid-column:3}
+.tl-item:nth-child(even) .tl-pic{grid-column:1}
+.tl-pic img{display:block;margin:0 auto;width:min(120px,80%);height:auto}
+.tl-mid{grid-row:1;grid-column:2;align-self:stretch;position:relative}
+.tl-mid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--ink)}
+.tl-mid::after{content:"";position:absolute;left:50%;top:var(--dot);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--gold)}
+.tl-item:first-child .tl-mid::before{top:calc(var(--dot) + 7px)}
+.tl-item:last-child .tl-mid::before{bottom:auto;height:calc(var(--dot) + 7px)}
+.timeline h3{margin:0 0 .4rem;font-size:2.1rem;line-height:1.05;letter-spacing:.06em}
+.timeline p{margin:.1rem 0}
+.timeline .time{font-weight:600;letter-spacing:.12em}
+.js .tl-item .tl-mid{opacity:0;transition:opacity .6s ease}
+.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:0;transform:translateY(10px);transition:opacity .7s ease .1s,transform .7s ease .1s}
+.js .tl-item.show .tl-mid{opacity:1}
+.js .tl-item.show .tl-side,.js .tl-item.show .tl-pic{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .tl-item .tl-mid,.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:1;transform:none;transition:none}}
+
+.where p{margin:.2rem 0}
+.where .lead{margin-top:1.4rem}
+.where .lead:first-of-type{margin-top:0}
+
+.tl-art{display:block;margin:0 auto .8rem;width:min(100%,230px);height:auto}
+.tl-art.tall{width:min(70%,150px)}
+.venue-art{display:block;margin:0 auto 1.6rem;width:min(100%,480px);height:auto}
+
+/* FAQ: question in the heading font, answer drops down in the body font */
+.faq{margin:1.2rem 0 0;text-align:left}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq details[open]{background:var(--cream-soft)}
+.faq summary{list-style:none;cursor:pointer;position:relative;padding:1rem 2.6rem 1rem .8rem;font-weight:600;font-size:1.3rem;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:.8rem;top:50%;transform:translateY(-50%);font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:1.7rem;letter-spacing:0}
+.faq details[open] summary::after{content:"\2013"}
+.faq .answer{padding:0 .8rem 1.4rem}
+.faq .answer p{margin:.5rem 0}
+.faq ol{list-style:decimal;padding-left:1.6rem;margin:.9rem 0}
+.faq li{margin:.45rem 0}
