@@ -1,28 +1,705 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
-<title>RSVP · Marta &amp; Shaneil</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Antonio:wght@200&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=15"></head>
-<body><div class="page">
-<header><a class="back" href="../">Back</a><h1>RSVP</h1></header>
-<p>Please reply by <span class="todo">RSVP deadline TBC</span>.</p>
-<form id="rsvp" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-<label for="name">Your name</label><input id="name" name="name" required autocomplete="name">
-<label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email">
-<label for="attending">Will you attend?</label>
-<select id="attending" name="attending" required><option value="">Choose one</option><option>Yes, we’ll be there</option><option>No, we can’t make it</option></select>
-<label for="guests">Names of everyone in your party attending</label><textarea id="guests" name="party"></textarea>
-<label for="diet">Dietary requirements</label><textarea id="diet" name="dietary"></textarea>
-<label for="note">Message for us (optional)</label><textarea id="note" name="message"></textarea>
-<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
-<button class="btn" type="submit">Send RSVP</button>
-<p id="status" class="msg" role="status"></p>
-</form>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E8YQ0GYPR4"></script>
 <script>
-const f=document.getElementById("rsvp"),s=document.getElementById("status");
-f.addEventListener("submit",async e=>{e.preventDefault();s.textContent="Sending…";
- try{const r=await fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}});
-  if(r.ok){f.reset();s.textContent="Thank you, your RSVP has been sent."}else throw 0}
- catch(x){s.textContent="Your RSVP didn’t send. Please try again, or contact us directly."}});
-</script></body></html>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E8YQ0GYPR4');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaneil Narsey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:  #F5F2ED;
+  --ink: #343434;
+  --mid: rgba(52,52,52,0.42);
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  overflow: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 44px;
+  pointer-events: none;
+}
+.nav-home {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  pointer-events: all;
+  cursor: pointer;
+  color: var(--mid);
+  transition: color 0.2s;
+}
+.nav-home:hover { color: var(--ink); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  pointer-events: all;
+}
+.nav-links li {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.nav-links li:hover,
+.nav-links li.active { color: var(--ink); }
+.nav-links a { color: inherit; text-decoration: none; }
+
+/* ── PAGES ── */
+.page { display: none; position: fixed; inset: 0; background: var(--bg); }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════
+   SPLASH
+══════════════════════════════════════ */
+#splash { display: none; position: fixed; inset: 0; }
+#splash.active { display: block; }
+
+.splash-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.splash-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.06);
+  animation: zoom-in 2s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.splash-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.52) 0%,
+    rgba(0,0,0,0.18) 40%,
+    rgba(0,0,0,0.08) 100%
+  );
+}
+
+.splash-content {
+  position: absolute;
+  bottom: 52px;
+  left: 52px;
+  z-index: 10;
+}
+
+.splash-name {
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: #fff;
+  display: flex;
+  gap: 0.22em;
+}
+.name-word { display: flex; }
+.name-char {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  /* start fully hidden from top, reveal upward from bottom */
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.7s cubic-bezier(0.25, 1, 0.4, 1);
+}
+.name-char.revealed {
+  clip-path: inset(0% 0 0 0);
+}
+
+.splash-meta {
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  opacity: 0;
+  animation: fade-up 0.8s 1.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes zoom-in { to { transform: scale(1.0); } }
+@keyframes fade-up { to { opacity: 1; } }
+@keyframes up      { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadein  { to { opacity: 1; } }
+
+/* ══════════════════════════════════════
+   SCROLL CONTAINER
+══════════════════════════════════════ */
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container { scrollbar-width: none; }
+
+/* ── SLIDE ── */
+.slide {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── HERO ── */
+.slide-hero {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0 44px 48px;
+}
+.hero-label {
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: up 0.85s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.scroll-nudge {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadein 1s 1.1s ease forwards;
+}
+.scroll-nudge span {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+.scroll-nudge-line {
+  width: 1px;
+  height: 28px;
+  background: var(--mid);
+  animation: pulse-line 2s 1.5s ease-in-out infinite;
+}
+@keyframes pulse-line {
+  0%,100% { opacity: 0.35; }
+  50%      { opacity: 0.8; }
+}
+
+/* ── PHOTO ── */
+.slide-photo {
+  position: absolute;
+  overflow: hidden;
+  background: #e0ddd8;
+}
+.slide-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 1.1s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform;
+}
+.slide.in-view .slide-photo img { transform: scale(1.0); }
+
+/* ── CAPTION ── */
+.slide-caption {
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s 0.3s ease, transform 0.65s 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
+
+.caption-title {
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+.caption-sub {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ══════════════════════════════════════
+   LAYOUT VARIANTS
+   Explicit width + height in vw units.
+   aspect-ratio is unreliable on
+   position:absolute — using vw math:
+   4:3  → h = w * 0.75
+   3:2  → h = w * 0.667
+   16:9 → h = w * 0.5625
+══════════════════════════════════════ */
+
+/* dolomites01 — LANDSCAPE 3:2, right */
+.layout-right .slide-photo {
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 54vw; height: 36vw;
+}
+.layout-right .slide-caption { left: 8vw; bottom: 14vh; }
+
+/* dolomites02, amalfi — PORTRAIT 3:4, left */
+.layout-left .slide-photo {
+  left: 10vw; top: 50%; transform: translateY(-50%);
+  width: 36vw; height: 48vw;
+}
+.layout-left .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+
+/* flatiron — PORTRAIT 3:4, centred */
+.layout-centre-tall .slide-photo {
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 36vw; height: 48vw;
+}
+.layout-centre-tall .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+.layout-centre-tall.slide.in-view .slide-caption { opacity: 1; transform: translateY(0); }
+
+/* botswana — LANDSCAPE 16:9, left */
+.layout-landscape .slide-photo {
+  left: 8vw; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 34.875vw;
+}
+.layout-landscape .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+
+/* french-ridge — LANDSCAPE 16:9, right */
+.layout-landscape-right .slide-photo {
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 34.875vw;
+}
+.layout-landscape-right .slide-caption { left: 8vw; bottom: 14vh; }
+
+/* kea — LANDSCAPE 4:3, left */
+.layout-landscape-43 .slide-photo {
+  left: 8vw; top: 50%; transform: translateY(-50%);
+  width: 60vw; height: 45vw;
+}
+.layout-landscape-43 .slide-caption { right: 8vw; bottom: 14vh; text-align: right; }
+
+/* muriwai — LANDSCAPE 4:3, right */
+.layout-landscape-43-right .slide-photo {
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 60vw; height: 45vw;
+}
+.layout-landscape-43-right .slide-caption { left: 8vw; bottom: 14vh; }
+
+/* nyc-skyline — LANDSCAPE 3:2 small, right */
+.layout-small-right .slide-photo {
+  right: 8vw; top: 50%; transform: translateY(-50%);
+  width: 48vw; height: 32vw;
+}
+.layout-small-right .slide-caption { left: 8vw; bottom: 22vh; }
+
+/* ── ABOUT ── */
+#about {
+  overflow: hidden;
+}
+
+/* 4:3 landscape image, right side, with negative space */
+.about-image {
+  position: absolute;
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56vw;
+  height: 42vw; /* 4:3 ratio */
+  overflow: hidden;
+  background: #e0ddd8;
+}
+.about-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  animation: about-zoom 1.2s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  will-change: transform;
+}
+@keyframes about-zoom { to { transform: scale(1.0); } }
+
+/* Bio pinned bottom-left */
+.about-bio {
+  position: absolute;
+  bottom: 52px;
+  left: 52px;
+  max-width: 280px;
+  z-index: 10;
+}
+.about-bio p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.ig-link {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+  color: var(--ink); transition: opacity 0.2s;
+  text-decoration: none;
+}
+.ig-link:hover { opacity: 0.4; }
+
+/* ── MOBILE (iPhone) ── */
+@media (max-width: 500px) {
+  /* Nav */
+  nav { padding: 20px 20px; }
+  .nav-home { font-size: 10px; }
+  .nav-links { gap: 16px; }
+  .nav-links li { font-size: 10px; }
+
+  /* Splash */
+  .splash-content { left: 24px; bottom: 40px; }
+  .splash-name { font-size: clamp(28px, 10vw, 40px); }
+  .splash-meta { font-size: 10px; }
+
+  /* Hero slide */
+  .slide-hero { padding: 0 24px 40px; }
+  .hero-label { font-size: clamp(22px, 8vw, 36px); }
+
+  /* All photo slides — stack image centred, caption below */
+  /* Override all layout variants to a single mobile layout */
+  .layout-right .slide-photo,
+  .layout-left .slide-photo,
+  .layout-centre-tall .slide-photo,
+  .layout-landscape .slide-photo,
+  .layout-landscape-right .slide-photo,
+  .layout-landscape-43 .slide-photo,
+  .layout-landscape-43-right .slide-photo,
+  .layout-small-right .slide-photo {
+    left: 50%;
+    right: auto;
+    top: 14vh;
+    transform: translateX(-50%);
+    width: 88vw;
+    height: 66vw; /* 4:3 landscape default */
+  }
+
+  /* Portrait images — taller on mobile */
+  .layout-left .slide-photo,
+  .layout-centre-tall .slide-photo {
+    width: 72vw;
+    height: 96vw; /* 3:4 portrait */
+  }
+
+  /* All captions — pinned bottom centre */
+  .layout-right .slide-caption,
+  .layout-left .slide-caption,
+  .layout-centre-tall .slide-caption,
+  .layout-landscape .slide-caption,
+  .layout-landscape-right .slide-caption,
+  .layout-landscape-43 .slide-caption,
+  .layout-landscape-43-right .slide-caption,
+  .layout-small-right .slide-caption {
+    left: 6vw;
+    right: auto;
+    bottom: 8vh;
+    top: auto;
+    transform: none;
+    text-align: left;
+  }
+
+  /* Reset any in-view transform overrides for mobile */
+  .layout-centre-tall.slide.in-view .slide-caption {
+    transform: none;
+  }
+
+  /* Caption text size */
+  .caption-title { font-size: 15px; }
+  .caption-sub   { font-size: 9px; }
+
+  /* About page */
+  .about-image {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 14vh;
+    bottom: auto;
+    width: 88vw;
+    height: 66vw;
+  }
+  .about-bio {
+    bottom: 10vh;
+    left: 24px;
+    max-width: 80vw;
+  }
+  .about-bio p { font-size: 13px; }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-home" onclick="showPage('splash')">Home</div>
+  <ul class="nav-links">
+    <li id="nav-photography" onclick="showPage('photography')">Selected works</li>
+    <li id="nav-about" onclick="showPage('about')">About</li>
+    <li><a href="https://instagram.com/shaneiln" target="_blank">Instagram ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ SPLASH ═══ -->
+<div id="splash" class="active">
+  <div class="splash-bg">
+    <img src="cover-image.jpeg" alt="Cover">
+  </div>
+  <div class="splash-content">
+    <div class="splash-name" id="splashName">
+      <span class="name-word" id="word1"></span>
+      <span class="name-word" id="word2"></span>
+    </div>
+    <div class="splash-meta">Queenstown, New Zealand</div>
+  </div>
+</div>
+
+<!-- ═══ SELECTED WORKS ═══ -->
+<div class="page" id="photography">
+  <div class="scroll-container" id="scrollContainer">
+
+    <div class="slide slide-hero">
+      <div class="hero-label">Selected works</div>
+      <div class="scroll-nudge">
+        <span>Scroll</span>
+        <div class="scroll-nudge-line"></div>
+      </div>
+    </div>
+
+    <!-- 1 dolomites01 — landscape right -->
+    <div class="slide layout-right">
+      <div class="slide-photo"><img src="dolomites01.jpg" alt="Dolomites"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Dolomites</div>
+        <div class="caption-sub">Italy · 2023</div>
+      </div>
+    </div>
+
+    <!-- 2 dolomites02 — portrait 4:3 left -->
+    <div class="slide layout-left">
+      <div class="slide-photo"><img src="dolomites02.jpg" alt="Dolomites portrait"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Dolomites</div>
+        <div class="caption-sub">Italy · 2023</div>
+      </div>
+    </div>
+
+    <!-- 3 botswana — landscape -->
+    <div class="slide layout-landscape">
+      <div class="slide-photo"><img src="botswana.jpg" alt="Chobe National Park"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Chobe National Park</div>
+        <div class="caption-sub">Botswana · 2014</div>
+      </div>
+    </div>
+
+    <!-- 4 flatiron — portrait centre -->
+    <div class="slide layout-centre-tall">
+      <div class="slide-photo"><img src="flatiron.jpg" alt="Flatiron NYC"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Flatiron</div>
+        <div class="caption-sub">New York · 2016</div>
+      </div>
+    </div>
+
+    <!-- 5 nyc-skyline — landscape small right -->
+    <div class="slide layout-small-right">
+      <div class="slide-photo"><img src="nyc-skyline.jpg" alt="Manhattan skyline"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Manhattan</div>
+        <div class="caption-sub">New York · 2016</div>
+      </div>
+    </div>
+
+    <!-- 6 tia — portrait 3:4 left -->
+    <div class="slide layout-left">
+      <div class="slide-photo"><img src="tia.jpg" alt="Tia 2019"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Tia</div>
+        <div class="caption-sub">2019</div>
+      </div>
+    </div>
+
+    <!-- 7 muriwai — 4:3 right -->
+    <div class="slide layout-landscape-43-right">
+      <div class="slide-photo"><img src="muriwai.jpg" alt="Muriwai West Auckland Coast"></div>
+      <div class="slide-caption">
+        <div class="caption-title">West Auckland Coast</div>
+        <div class="caption-sub">Muriwai · 2017</div>
+      </div>
+    </div>
+
+    <!-- 8 india — landscape 4:3 right -->
+    <div class="slide layout-landscape-43-right">
+      <div class="slide-photo"><img src="india.jpg" alt="India 2019"></div>
+      <div class="slide-caption">
+        <div class="caption-title">India</div>
+        <div class="caption-sub">2019</div>
+      </div>
+    </div>
+
+    <!-- 9 kea — 4:3 left -->
+    <div class="slide layout-landscape-43">
+      <div class="slide-photo"><img src="kea.jpeg" alt="Kea Mt Aspiring"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Kea</div>
+        <div class="caption-sub">Mt Aspiring National Park</div>
+      </div>
+    </div>
+
+    <!-- 8 amalfi — portrait 3:4 left -->
+    <div class="slide layout-left">
+      <div class="slide-photo"><img src="amalfi.jpeg" alt="Amalfi Coast"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Amalfi Coast</div>
+        <div class="caption-sub">Italy · 2023</div>
+      </div>
+    </div>
+
+    <!-- 9 french-ridge — landscape right -->
+    <div class="slide layout-landscape-right">
+      <div class="slide-photo"><img src="french-ridge.jpeg" alt="French Ridge Mt Aspiring"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Mt Aspiring National Park</div>
+        <div class="caption-sub">New Zealand</div>
+      </div>
+    </div>
+
+    <!-- 10 sydney-opera — landscape 4:3, right -->
+    <div class="slide layout-landscape-43-right">
+      <div class="slide-photo"><img src="sydney-opera.jpg" alt="Sydney Opera House"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Opera House, Sydney</div>
+        <div class="caption-sub">BW 35mm film, Pentax K1000</div>
+      </div>
+    </div>
+
+    <!-- 11 guggenheim — landscape 4:3, left -->
+    <div class="slide layout-landscape-43">
+      <div class="slide-photo"><img src="guggenheim.jpg" alt="Guggenheim NYC"></div>
+      <div class="slide-caption">
+        <div class="caption-title">Guggenheim</div>
+        <div class="caption-sub">NYC · 2016</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="page" id="about">
+  <div class="about-image">
+    <img src="roys-peak.jpeg" alt="Roy's Peak">
+  </div>
+  <div class="about-bio">
+    <p>I'm Shaneil, based in Queenstown, New Zealand. Say hello via my socials if you wish to get in touch.</p>
+    <a class="ig-link" href="https://instagram.com/shaneiln" target="_blank">@shaneiln ↗</a>
+  </div>
+</div>
+
+<script>
+/* ── VERTICAL REVEAL NAME ANIMATION ── */
+const NAME = ['Shaneil', 'Narsey'];
+
+function buildName() {
+  NAME.forEach((word, wi) => {
+    const container = document.getElementById('word' + (wi + 1));
+    container.innerHTML = '';
+    word.split('').forEach(letter => {
+      const span = document.createElement('span');
+      span.className = 'name-char'; // no 'revealed' — starts hidden via clip-path
+      span.textContent = letter;
+      container.appendChild(span);
+    });
+  });
+}
+
+function runNameAnimation() {
+  const allChars = document.querySelectorAll('.name-char');
+  allChars.forEach((span, i) => {
+    setTimeout(() => span.classList.add('revealed'), 300 + i * 85);
+  });
+}
+
+buildName();
+setTimeout(runNameAnimation, 300);
+
+/* ── PAGE SWITCHING ── */
+function showPage(id) {
+  document.getElementById('splash').classList.remove('active');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links li').forEach(l => l.classList.remove('active'));
+
+  if (id === 'splash') {
+    document.getElementById('splash').classList.add('active');
+    buildName();
+    setTimeout(runNameAnimation, 200);
+  } else {
+    document.getElementById(id).classList.add('active');
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+  }
+
+  if (id === 'photography') {
+    const sc = document.getElementById('scrollContainer');
+    if (sc) sc.scrollTop = 0;
+  }
+}
+
+/* ── SCROLL OBSERVER ── */
+const container = document.getElementById('scrollContainer');
+const slides    = Array.from(document.querySelectorAll('.scroll-container .slide'));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+}, { root: container, threshold: 0.55 });
+slides.forEach(s => obs.observe(s));
+setTimeout(() => {
+  const hero = document.querySelector('.slide-hero');
+  if (hero) hero.classList.add('in-view');
+}, 60);
+</script>
+
+</body>
+</html>
