@@ -33,9 +33,11 @@ html{scroll-behavior:smooth}
 .tag{animation:in .8s ease-out .7s both}
 .art{animation:in 1s ease-out .9s both}
 .arrow{animation:in .8s ease-out 1.2s both}
+@keyframes pop{0%{opacity:0;transform:translateY(14px) scale(.9);filter:blur(4px)}60%{opacity:1;filter:none}100%{opacity:1;transform:none;filter:none}}
+.enter{animation:pop 1s cubic-bezier(.22,1.2,.36,1) 1.5s both}
 .js .reveal{opacity:0;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease}
 .js .reveal.show{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.date,.names,.tag,.art,.arrow,.arrow svg{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.date,.names,.tag,.art,.arrow,.arrow svg,.enter{animation:none}.js .reveal{opacity:1;transform:none;transition:none}}
 
 /* inner pages */
 .page{max-width:40rem;margin:0 auto;padding:3rem 1.5rem 5rem}
@@ -71,8 +73,8 @@ textarea{min-height:6rem}
 .tl-item:nth-child(even) .tl-pic{grid-column:1}
 .tl-pic img{display:block;margin:0 auto;width:min(120px,80%);height:auto}
 .tl-mid{grid-row:1;grid-column:2;align-self:stretch;position:relative}
-.tl-mid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:0;margin-left:-1.5px;border-left:3px dotted var(--gold)}
-.tl-mid::after{content:"";position:absolute;left:50%;top:var(--dot);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--gold)}
+.tl-mid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:0;margin-left:-1.5px;border-left:3px dotted var(--red)}
+.tl-mid::after{content:"";position:absolute;left:50%;top:var(--dot);width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--red)}
 .tl-item:first-child .tl-mid::before{top:calc(var(--dot) + 7px)}
 .tl-item:last-child .tl-mid::before{bottom:auto;height:calc(var(--dot) + 7px)}
 .timeline h3{margin:0 0 .4rem;font-size:2.1rem;line-height:1.05;letter-spacing:.06em}
@@ -84,6 +86,9 @@ textarea{min-height:6rem}
 .js .tl-item.show .tl-side,.js .tl-item.show .tl-pic{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .tl-item .tl-mid,.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:1;transform:none;transition:none}}
 
+.fold{min-height:calc(100vh - 17rem);min-height:calc(100dvh - 17rem);display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.fold .arrow{animation:in .8s ease-out .6s both}
+.venue-art.reveal{transition:opacity 1.4s ease,transform 1.4s ease}
 .where p{margin:.2rem 0}
 .where .lead{margin-top:1.4rem}
 .where .lead:first-of-type{margin-top:0}
