@@ -2,7 +2,7 @@
    Names use "A Day Without Sun": add the font file to /fonts (see fonts/README.txt). Antonio is the fallback. */
 @font-face{font-family:"ADayWithoutSun";font-display:block;
   src:url("fonts/ADayWithoutSun.ttf") format("truetype"),url("fonts/ADayWithoutSun.woff2") format("woff2")}
-:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--cream:#FBF5E6;--text:#5C1F14;--red:#C22E1A;--gold:#F0AC1B;--bg:var(--cream);--ink:var(--text);--line:rgba(92,31,20,.4);--hl:rgba(92,31,20,.12)}
+:root{--head:"ADayWithoutSun","Antonio",sans-serif;--gap:clamp(1.6rem,6vh,3.4rem);--cream:#FFFBF0;--text:#74323E;--red:#C22E1A;--gold:#F0AC1B;--bg:var(--cream);--ink:var(--text);--line:rgba(116,50,62,.4);--hl:rgba(116,50,62,.12)}
 *{box-sizing:border-box}
 body{margin:0;font-synthesis:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.25rem;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.7}
 h1,h2{margin:0;font-weight:600;line-height:1.15}
@@ -80,14 +80,16 @@ textarea{min-height:6rem}
 .timeline h3{margin:0 0 .4rem;font-size:2.1rem;line-height:1.05;letter-spacing:.06em}
 .timeline p{margin:.1rem 0}
 .timeline .time{font-weight:600;letter-spacing:.12em}
-.js .tl-item .tl-mid{opacity:0;transition:opacity .6s ease}
+.js .tl-mid::before{clip-path:inset(0 0 calc((1 - var(--p,0)) * 100%) 0)}
+.js .tl-item .tl-mid::after{transform:scale(0);opacity:0;transition:transform .6s cubic-bezier(.3,1.9,.5,1),opacity .25s ease}
 .js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:0;transform:translateY(10px);transition:opacity .7s ease .1s,transform .7s ease .1s}
-.js .tl-item.show .tl-mid{opacity:1}
+.js .tl-item.show .tl-mid::after{transform:scale(1);opacity:1}
 .js .tl-item.show .tl-side,.js .tl-item.show .tl-pic{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.js .tl-item .tl-mid,.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.js .tl-item .tl-side,.js .tl-item .tl-pic{opacity:1;transform:none;transition:none}.js .tl-mid::before{clip-path:none}.js .tl-item .tl-mid::after{transform:none;opacity:1;transition:none}}
 
 .fold{min-height:calc(100vh - 17rem);min-height:calc(100dvh - 17rem);display:flex;flex-direction:column;align-items:center;justify-content:space-between}
 .fold .arrow{animation:in .8s ease-out .6s both}
+#when{margin-bottom:2.8rem}
 .venue-art.reveal{transition:opacity 1.4s ease,transform 1.4s ease}
 .where p{margin:.2rem 0}
 .where .lead{margin-top:1.4rem}

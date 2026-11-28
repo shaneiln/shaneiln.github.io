@@ -3,7 +3,7 @@
 <title>Marta &amp; Shaneil · Wedding details</title>
 <script>document.documentElement.classList.add("js")</script>
 <link rel="preload" href="../fonts/ADayWithoutSun.ttf" as="font" type="font/ttf" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Antonio:wght@200&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=16"></head>
+<link rel="stylesheet" href="../style.css?v=17"></head>
 <body><div class="page center">
 <header><a class="back" href="../">Back</a>
 <h1 class="names">Marta<span class="amp">&amp;</span>Shaneil</h1>
@@ -24,21 +24,21 @@
 </div>
 
 <h2 id="when">When and where</h2>
-<img class="venue-art reveal" src="../images/venue.svg?v=6" alt="" width="1030" height="686">
+<img class="venue-art reveal" src="../images/venue.svg?v=7" alt="" width="1030" height="686">
 <div class="where">
 <p class="lead">Our wedding will be on</p>
 <p>Saturday 11 December, 2027, at 4pm</p>
 <p class="lead">At</p>
-<p><strong>The Glasshouse Morningside</strong><br>18 McDonald Street, Morningside, Auckland 1025</p>
+<p><strong>The Glasshouse Morningside</strong><br><a href="https://maps.app.goo.gl/GFDFE2LyUrNh72iA9" target="_blank" rel="noopener">18 McDonald Street, Morningside, Auckland 1025</a></p>
 </div>
 
 <h2>Schedule</h2>
 <ol class="timeline">
 <!-- To add artwork to a stage, put <img class="tl-art" src="../images/schedule/NAME.svg" alt=""> at the start of that stage's tl-side div, above the heading -->
 <li class="tl-item"><div class="tl-side"><h3>Guests arrive</h3><p class="time">3.30pm onwards</p><p>Please be seated by 4pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
-<li class="tl-item"><div class="tl-side"><img class="tl-art" src="../images/schedule/ceremony.svg?v=6" alt="" width="887" height="868"><h3>Ceremony</h3><p class="time">4pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
-<li class="tl-item"><div class="tl-side"><img class="tl-art tall" src="../images/schedule/cocktail.svg?v=6" alt="" width="862" height="1013"><h3>Cocktail hour</h3><p class="time">5.30pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
-<li class="tl-item"><div class="tl-side"><img class="tl-art" src="../images/schedule/dinner.svg?v=6" alt="" width="1149" height="1022"><h3>Dinner and reception</h3><p class="time">7pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
+<li class="tl-item"><div class="tl-side"><img class="tl-art" src="../images/schedule/ceremony.svg?v=7" alt="" width="887" height="868"><h3>Ceremony</h3><p class="time">4pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
+<li class="tl-item"><div class="tl-side"><img class="tl-art tall" src="../images/schedule/cocktail.svg?v=7" alt="" width="862" height="1013"><h3>Cocktail hour</h3><p class="time">5.30pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
+<li class="tl-item"><div class="tl-side"><img class="tl-art" src="../images/schedule/dinner.svg?v=7" alt="" width="1149" height="1022"><h3>Dinner and reception</h3><p class="time">7pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
 <li class="tl-item"><div class="tl-side"><h3>Finish</h3><p class="time">11.30pm</p></div><div class="tl-pic"></div><div class="tl-mid" aria-hidden="true"></div></li>
 </ol>
 
@@ -46,7 +46,7 @@
 <p>The venue doesn’t have any allocated parking, so we encourage using public transport, Uber or a taxi where you can. There is street parking in the area, however, some days this can be hard to come by so, if driving, it pays to allow extra time to find a park.</p>
 
 <h2>What to wear</h2>
-<p><span class="todo">Dress guidance TBC</span></p>
+<p>Wear whatever makes you feel celebratory. Indian and Western attire are both welcome, and nothing is expected. The formal ceremony will be followed by a cocktail hour, dinner and reception running late into the evening.</p>
 
 <h2>Frequently asked questions</h2>
 <div class="faq">
@@ -83,12 +83,29 @@ async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncod
 const fold=document.querySelector(".fold");
 function sizeFold(){if(content.hidden)return;fold.style.minHeight="0";const top=fold.getBoundingClientRect().top+scrollY;fold.style.minHeight=Math.max(220,innerHeight-top-48)+"px"}
 addEventListener("resize",sizeFold);
-function unlock(){gate.hidden=true;content.hidden=false;sizeFold();try{sessionStorage.setItem("wedding-ok",HASH)}catch(e){}}
+function unlock(){gate.hidden=true;content.hidden=false;sizeFold();if(typeof queue==="function")queue();try{sessionStorage.setItem("wedding-ok",HASH)}catch(e){}}
 try{if(sessionStorage.getItem("wedding-ok")===HASH)unlock()}catch(e){}
 gate.addEventListener("submit",async e=>{e.preventDefault();
  const h=await sha(document.getElementById("pw").value.trim());
  if(h===HASH)unlock();else msg.textContent="That password isn’t right. Check your invitation and try again."});
-// schedule: each stage appears as it scrolls into view
+// fade the venue artwork in as it scrolls into view
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.3});
-document.querySelectorAll(".tl-item,.reveal").forEach(el=>io.observe(el));
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+// schedule: the dotted line draws as you scroll; each dot pops as its stage appears
+const items=[...document.querySelectorAll(".tl-item")],still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var busy=false;
+function drawLine(){
+ busy=false;if(content.hidden)return;
+ const trigger=innerHeight*.75,dotOff=parseFloat(getComputedStyle(document.documentElement).fontSize)*.6+7;
+ items.forEach((it,i)=>{
+  const r=it.getBoundingClientRect(),dotY=r.top+dotOff;
+  const start=i===0?dotY:r.top,end=i===items.length-1?dotY:r.bottom;
+  const p=still?1:Math.min(1,Math.max(0,(trigger-start)/(end-start)));
+  if(p>(+it.dataset.p||0)){it.dataset.p=p;it.style.setProperty("--p",p)}
+  if(still||trigger>=dotY)it.classList.add("show");
+ });
+}
+function queue(){if(!busy){busy=true;requestAnimationFrame(drawLine)}}
+addEventListener("scroll",queue,{passive:true});addEventListener("resize",queue);
+if(!content.hidden)queue();
 </script></body></html>
